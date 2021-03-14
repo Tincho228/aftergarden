@@ -6,7 +6,7 @@ function generateTable()
       console.log('checkout run');
       
       $.ajax({
-        url: '/products',
+        url: '/users',
         type: 'GET',
         dataType: 'json', //will parse json into javascript object
         //callback called when suceed
