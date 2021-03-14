@@ -22,8 +22,7 @@ ssl: {
 app.set("port", (process.env.PORT || 5000));
 
 // Index Page
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/home.html')));
-
+app.get('/', (req, res) => res.render('pages/home')) 
 
 app.get("/getPerson", getPerson)
 
