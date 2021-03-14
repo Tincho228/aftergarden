@@ -1,5 +1,12 @@
 require('dotenv').config();
+const path = require('path');
 var express = require("express");
+
+//Set public folder
+app.use (express.static("public"));
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 var app = express();
 const {Pool} = require("pg");
 
@@ -12,17 +19,15 @@ ssl: {
 
 app.set("port", (process.env.PORT || 5000));
 
-app.get("/", getHomePage)
+// Index Page
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/home.html')));
+
 
 app.get("/getPerson", getPerson)
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
 });
-
-function getHomePage(req,res){
-    console.log("getPerson");
-}
 
 function getPerson(req, res){
     console.log("Getting person information");
