@@ -12,24 +12,30 @@ ssl: {
 
 app.set("port", (process.env.PORT || 5000));
 
+app.get("/", getHomePage)
+
 app.get("/getPerson", getPerson)
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
 });
 
+function getHomePage(req,res){
+    console.log("getPerson");
+}
+
 function getPerson(req, res){
     console.log("Getting person information");
     var id = req.query.id;
     console.log("Retrieving person with id", id);
 
-    getPersonFromDb(id, function(error, result){
+    getUserFromDb(id, function(error, result){
         console.log("Back from the database with result: ", result);
         res.json(result);
     });
 }
 
-function getPersonFromDb(id, callback){
+function getUserFromDb(id, callback){
     console.log("Get person from Db called with id: ",id);
 
     var sql = "SELECT user_id, user_name, user_email, user_password FROM public.users WHERE user_id =$1::int";
