@@ -2,12 +2,14 @@ require('dotenv').config();
 
 var express = require("express");
 const path = require('path');
+var app = express();
+
 //Set public folder
 app.use (express.static("public"));
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-var app = express();
+
 const {Pool} = require("pg");
 
 const connectionString = process.env.DATABASE_URL || "postgres://familyhistoryuser:elijah@localhost:5432/familyhistory";
@@ -23,12 +25,12 @@ app.set("port", (process.env.PORT || 5000));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/home.html')));
 
 
-//app.get("/getPerson", getPerson)
+app.get("/getPerson", getPerson)
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
 });
-/*
+
 function getPerson(req, res){
     console.log("Getting person information");
     var id = req.query.id;
@@ -54,4 +56,4 @@ function getUserFromDb(id, callback){
         console.log("Found the result:" + JSON.stringify(result.rows));
         callback(null, result.rows);
     })
-}*/
+}
