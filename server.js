@@ -22,7 +22,7 @@ app.set("port", (process.env.PORT || 5000));
 // Index Page
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/home.html')));
 
-
+/*
 app.get("/getPerson", getPerson)
 
 app.listen(app.get("port"), function(){
@@ -54,4 +54,4 @@ function getUserFromDb(id, callback){
         console.log("Found the result:" + JSON.stringify(result.rows));
         callback(null, result.rows);
     })
-}
+}*/
