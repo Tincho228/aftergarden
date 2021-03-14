@@ -1,7 +1,7 @@
 require('dotenv').config();
-const path = require('path');
-var express = require("express");
 
+var express = require("express");
+const path = require('path');
 //Set public folder
 app.use (express.static("public"));
 
