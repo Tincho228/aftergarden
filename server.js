@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var express = require("express");
 const path = require('path');
 var app = express();
@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 const {Pool} = require("pg");
 
-const connectionString = process.env.DATABASE_URL || "postgres://familyhistoryuser:elijah@localhost:5432/familyhistory";
+const connectionString = process.env.DATABASE_URL || 'postgres://aftergardenuser:aftergarden@localhost:5432/aftergarden';
 const pool = new Pool({connectionString: connectionString, 
 ssl: {
     rejectUnauthorized: false
@@ -24,7 +24,7 @@ app.set("port", (process.env.PORT || 5000));
 // Index Page
 app.get('/', (req, res) => res.render('pages/home')) 
 
-app.get("/getPerson", getPerson)
+app.get("/getUsers", getPerson)
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
