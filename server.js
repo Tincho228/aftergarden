@@ -32,7 +32,7 @@ function getPerson(req, res){
 function getPersonFromDb(id, callback){
     console.log("Get person from Db called with id: ",id);
 
-    var sql = "SELECT user_id, user_name, user_email, user_password FROM public.users WHERE id =$1::int";
+    var sql = "SELECT user_id, user_name, user_email, user_password FROM public.users WHERE user_id =$1::int";
     var params = [id];
     pool.query(sql, params, function(err, result){
         if(err){
