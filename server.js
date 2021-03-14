@@ -5,7 +5,7 @@ const path = require('path');
 var app = express();
 
 // controller module
-const userController = require('./controller/userController.js');
+//const userController = require('./controller/userController.js');
 
 //Set public folder
 app.use (express.static("public"));
@@ -29,7 +29,7 @@ app.get('/', (req, res) => res.render('pages/home'))
 
 app.get("/users", getPerson) // Returns a Json File
 
-app.get("/getListUsers", userController.userController) /* Returns a Json File*/
+//app.get("/getListUsers", userController.userController) /* Returns a Json File*/
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
