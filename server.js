@@ -22,13 +22,13 @@ app.set("port", (process.env.PORT || 5000));
 // Index Page
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/home.html')));
 
-/*
-app.get("/getPerson", getPerson)
+
+//app.get("/getPerson", getPerson)
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
 });
-
+/*
 function getPerson(req, res){
     console.log("Getting person information");
     var id = req.query.id;
