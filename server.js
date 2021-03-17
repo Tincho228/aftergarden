@@ -14,14 +14,14 @@ app.use (express.static("public"));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-const {Pool} = require("pg");
+/*const {Pool} = require("pg");
 
 const connectionString = process.env.DATABASE_URL || 'postgres://aftergardenuser:aftergarden@localhost:5432/aftergarden';
 const pool = new Pool({connectionString: connectionString, 
 ssl: {
     rejectUnauthorized: false
 }
-});
+});*/
 
 app.set("port", (process.env.PORT || 5000));
 
@@ -31,22 +31,6 @@ app.get('/', (req, res) => res.render('pages/home'))
 app.get("/users", getPerson) // Returns a Json File
 
 app.post("/json", ProductController.getProducts)
-/*app.post("/json", function(req, res){
-    console.log("sending data to ajax");
-    /*var params = [id];
-    var sql = "SELECT user_id, user_name, user_email, user_password FROM public.users WHERE user_id =$1::int";
-    pool.query(sql, params, function(err, result){
-        if(err){
-            console.log("An error with the DB ocurred");
-            console.log(err);
-            callback(err, null);
-        }
-        console.log("Found the result:" + JSON.stringify(result.rows));
-        res.status(200).json(result.rows);    
-    });
-    var result = "This is information from the database";
-    res.status(200).json(result);
-    });*/
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
