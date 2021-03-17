@@ -1,8 +1,12 @@
 require('dotenv').config();
+//Controllers
+const ProductController = require('./controllers/getProducts.js');
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var express = require("express");
 const path = require('path');
 var app = express();
+app.use(express.urlencoded({extended:true}))//support url encoded bodies
 
 //Set public folder
 app.use (express.static("public"));
@@ -26,9 +30,9 @@ app.get('/', (req, res) => res.render('pages/home'))
 
 app.get("/users", getPerson) // Returns a Json File
 
-app.post("/json", function(req, res){
+app.post("/json", ProductController.getProducts)
+/*app.post("/json", function(req, res){
     console.log("sending data to ajax");
-    
     /*var params = [id];
     var sql = "SELECT user_id, user_name, user_email, user_password FROM public.users WHERE user_id =$1::int";
     pool.query(sql, params, function(err, result){
@@ -39,10 +43,10 @@ app.post("/json", function(req, res){
         }
         console.log("Found the result:" + JSON.stringify(result.rows));
         res.status(200).json(result.rows);    
-    });*/
+    });
     var result = "This is information from the database";
     res.status(200).json(result);
-    });
+    });*/
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));
