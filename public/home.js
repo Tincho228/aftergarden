@@ -1,17 +1,19 @@
 /****************************
  * Query Database AJAX Request
  ****************************/
-
 $(document).ready(function(){
   $("button").click(function(){
-    const id = $('#id').val();
+    id= $('#id').val();
     console.log(id);
-    $.post('/json', {id:id}, function (data){
-        console.log('ajax success!', data);
-        jsonresult = "The result from ajax is :" + data;   
-        $('#result').html(jsonresult);
-      }//sucess data call
-    );//ajax function call
+    $.get('/json',{id:id}, function(data){
+
+      console.log('ajax success! :');
+      console.log(data.fields[1].user_name);
+      for (var i = 0; i < data.rows.length; i++){
+        $('#result').append("<li>Name: "+ data.rows[i].user_name + ",password: " +data.rows[i].user_password +"</li>");
+      }
+      
+    });
+    });//ajax function call
     //CART CLICK AJAX END
   });
-});
