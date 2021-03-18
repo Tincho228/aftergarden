@@ -1,18 +1,20 @@
-const {Pool} = require("pg");
+// require the module Models
+const ProductModel = require('../models/getProductsfromDB.js');
 
+/*const {Pool} = require("pg");
 const connectionString = process.env.DATABASE_URL || 'postgres://aftergardenuser:aftergarden@localhost:5432/aftergarden';
 const pool = new Pool({connectionString: connectionString, 
 ssl: {
     rejectUnauthorized: false
 }
-});
+});*/
 
  function getJson (req, res){
      // retrieving data from jquery
     console.log("controlling...");
     id = parseFloat(req.query.id);
     // sending data to the model
-    getusersFromDB(id,function(err, result){
+    ProductModel.getusersFromDB(id,function(err, result){
         if(err){
             console.log("there is an err from the model");
         }
@@ -21,7 +23,7 @@ ssl: {
     });
  }
 
- function getusersFromDB(id,callback){
+ /*function getusersFromDB(id,callback){
      // establishing params for sql
     var params = [id];
     // create slq statement
@@ -38,15 +40,8 @@ ssl: {
         callback(null, result);    
     });
     
-    }
+    }*/
  
-    
-
-
-    
-    
-
-
 module.exports = {
     getJson: getJson
 }; 
