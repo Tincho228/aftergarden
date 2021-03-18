@@ -18,10 +18,10 @@ app.set("port", (process.env.PORT || 5000));
 
 // Index Page
 app.get('/', (req, res) => res.render('pages/home')) 
-
+app.get('/login', (req, res) => res.render('pages/login')) 
 app.get("/users", getPerson) // Returns a Json File
-
 app.get("/json", ProductController.getJson);
+
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));

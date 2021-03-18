@@ -20,10 +20,9 @@ function getusersFromDB(id,callback){
            console.log(err);
            callback(err, null);
        }
-       callback(null, result);    
-   });
-   
-   }
+       callback(null, result);
+   });   
+}
 
 
 

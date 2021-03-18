@@ -4,9 +4,7 @@
 $(document).ready(function(){
   $("button").click(function(){
     id= $('#id').val();
-    console.log(id);
     $.get('/json',{id:id}, function(data){
-
       console.log('ajax success! :');
       console.log(data);
       for (var i = 0; i < data.rows.length; i++){
@@ -15,5 +13,5 @@ $(document).ready(function(){
       
     });
     });//ajax function call
-    //CART CLICK AJAX END
+    
   });
