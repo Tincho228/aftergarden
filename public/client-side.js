@@ -2,7 +2,7 @@
  * Query Database AJAX Request
  ****************************/
 $(document).ready(function(){
-  $("button").click(function(){
+  $("#register").click(function(){
     id= $('#id').val();
     $.get('/json',{id:id}, function(data){
       console.log('ajax success! :');
