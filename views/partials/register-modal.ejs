@@ -1,0 +1,49 @@
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">Aftergarden - logo</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <div class="row">
+         <div class="col-sm-12 col-md-6"  id="login_message">
+          <h1>Register</h1>
+          <hr>
+          <form>
+            <div class="form-group">
+              <label for="client_username">Username</label>
+              <input type="text" class="form-control" id="client_username" aria-describedby="emailHelp" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+              <label for="client_email">Email</label>
+              <input type="text" class="form-control" id="client_email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+              <label for="client_password">Password</label>
+              <input type="password" class="form-control" id="client_password" placeholder="Password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+              <p style="padding-left:10px;">The password must contain at least 8 characters, an uppercase letter, a number and a special character</p>
+              
+            </div>
+            <div class="form-group">
+              <label for="repeatPassword">Repeat Password</label>
+              <input type="password" class="form-control" id="repeatPassword" placeholder="Password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+            </div>
+            <a class="btn btn-danger text-light" id="register">Register</a>
+          </form>
+         </div>
+         <div class="col-sm-12 col-md-6">
+           <div class="image-container">
+             <img src="images/register.jpg" style="width:100%;" alt="login image">
+             <h2 class="login-image-title">START YOUR PROJECT</h2>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

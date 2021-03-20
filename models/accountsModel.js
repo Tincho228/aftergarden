@@ -38,6 +38,34 @@ function registerUserinDB(client_username, client_email, client_password, callba
     });
 }
 
+//check existing email
+function checkExistingUser(client_username, callback) {
+    console.log("We are checking existing user in DB" + client_username);
+    var sql = "SELECT client_username FROM clients WHERE client_username ='"+ client_username +"'";
+    pool.query(sql,function(err, result){
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
+// get client info
+
+function getClientinfo(client_username, callback){
+    console.log("Retrieving client information with user " + client_username);
+    var sql = "SELECT client_username, client_email, client_password FROM clients WHERE client_username ='"+ client_username +"'";
+    pool.query(sql,function(err, result){
+        console.log(" we are querying DB for check email");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
 
 
@@ -50,5 +78,8 @@ function registerUserinDB(client_username, client_email, client_password, callba
 
 module.exports = {
     getusersFromDB: getusersFromDB,
-    registerUserinDB:registerUserinDB
+    registerUserinDB:registerUserinDB,
+    checkExistingUser:checkExistingUser,
+    getClientinfo:getClientinfo
+    
 }; 

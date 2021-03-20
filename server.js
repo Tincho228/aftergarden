@@ -1,6 +1,6 @@
 require('dotenv').config();
 //Controllers
-const ProductController = require('./controllers/getProducts.js');
+const AccountsController = require('./controllers/accountsController.js');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var express = require("express");
@@ -18,10 +18,11 @@ app.set("port", (process.env.PORT || 5000));
 
 // Index Page
 app.get('/', (req, res) => res.render('pages/home')) 
-app.get('/login', (req, res) => res.render('pages/login')) 
-app.post('/register',ProductController.registerUser);
+app.post('/register',AccountsController.registerUser);
 app.get("/users", getPerson) // Returns a Json File
-app.get("/json", ProductController.getJson);
+app.get("/json", AccountsController.getJson);
+app.post('/login',AccountsController.login);
+
 
 
 app.listen(app.get("port"), function(){
