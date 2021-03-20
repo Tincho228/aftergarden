@@ -1,4 +1,5 @@
 // require the module Models
+const { json } = require('express');
 const AccountsModel = require('../models/accountsModel.js');
 
 function getJson (req, res){
@@ -35,18 +36,28 @@ function login (req, res){
         if(err){
             console.log("There is an err from de model");
         }
-        //check emails
+        //check emails 
         if(result.rowCount != 1) {
             console.log("The user does not exist");
+            result = "The user does not exist";
+            res.json({result});
         }
+        // if it matches
+        AccountsModel.getClientinfo(client_username, function(err, result){
+            if(err){
+                console.log("There is an err from the model");
+            }
+            if (client_password === result.rows[0].client_password){
+                console.log("the users match");
+                result = "You are logged in";
+                res.json({result});
+            }
+            result = "The password does not match";
+            res.json({result});
+    
+        }) ;
     });   
-    AccountsModel.getClientinfo(client_username, function(err, result){
-        if(err){
-            console.log("There is an err from the model");
-        }
-        res.json(result);
-
-    }) 
+    
 }
 
 module.exports = {
