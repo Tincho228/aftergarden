@@ -19,6 +19,7 @@ app.set("port", (process.env.PORT || 5000));
 // Index Page
 app.get('/', (req, res) => res.render('pages/home')) 
 app.get('/login', (req, res) => res.render('pages/login')) 
+app.post('/register',ProductController.registerUser);
 app.get("/users", getPerson) // Returns a Json File
 app.get("/json", ProductController.getJson);
 

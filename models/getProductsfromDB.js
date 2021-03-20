@@ -23,9 +23,20 @@ function getusersFromDB(id,callback){
        callback(null, result);
    });   
 }
-
-
-
+function registerUserinDB(client_username, client_email, client_password, callback){
+    var params = [client_username, client_email, client_password];
+    
+    var sql = "INSERT into public.clients(client_username, client_email, client_password) values ('"+client_username+"','"+client_email+"','"+client_password+"')";
+    pool.query(sql,function(err, result){
+        console.log("querying DB");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
 
 
@@ -38,5 +49,6 @@ function getusersFromDB(id,callback){
 
 
 module.exports = {
-    getusersFromDB: getusersFromDB
+    getusersFromDB: getusersFromDB,
+    registerUserinDB:registerUserinDB
 }; 

@@ -8,6 +8,13 @@ create table users (
     user_password varchar(25) not null
 );
 
+create table clients (
+    client_id serial not null primary key,
+    client_username varchar(100) not null,
+    client_email varchar(100) not null,
+    client_password varchar(250) not null
+);
+
 insert into public.users(user_name, user_email,user_password) values ('Jkirk', 'Kirk@mail.com','kirk1234');
 insert into public.users(user_name, user_email,user_password) values ('Rclark', 'clark@mail.com','Rclark1234');
 insert into public.users(user_name, user_email,user_password) values ('MBless', 'Bless@mail.com','Bless1234');
