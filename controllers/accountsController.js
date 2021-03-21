@@ -39,8 +39,8 @@ function login (req, res){
         //check emails 
         if(result.rowCount != 1) {
             console.log("The user does not exist");
-            result = "The user does not exist";
-            res.json({result});
+            result = "err_username";
+            return res.json({result});
         }
         // if it matches
         AccountsModel.getClientinfo(client_username, function(err, result){
@@ -49,10 +49,10 @@ function login (req, res){
             }
             if (client_password === result.rows[0].client_password){
                 console.log("the users match");
-                result = "You are logged in";
-                res.json({result});
+                result = "loggedin";
+                return res.json({result});
             }
-            result = "The password does not match";
+            result = "err_password";
             res.json({result});
     
         }) ;
