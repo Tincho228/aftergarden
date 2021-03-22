@@ -15,3 +15,37 @@
     text-align: center;
     color:whitesmoke;
 }
+.modal-content .modal-header {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.wrapper-hero {
+    height:100vh;
+    background-image: url("../images/hero-image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hero-content {
+    background-color: #0000005e;
+    padding:30px 70px;
+}
+.hero-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:60px;
+    font-weight: bold;
+    text-align: center;
+}
+.white {
+    color:white;
+}
+.green {
+    color:#aef4ae;
+}
+.btn {
+    margin:5px;
+}
+.button-container {
+    display:flex;
+    justify-content: center;
+}

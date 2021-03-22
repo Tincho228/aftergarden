@@ -6,27 +6,24 @@
 </head>
 
 <body>
-  <h1 class="text-center">This is the home page</h1>
-  <div class="text-center">
-    <label>Write your id</label>
-    <input type="number" id="id" name="id">
-    <button class="btn btn-info" id="getuser" >Show All Users</button>
-  </div>
-  <div class="text-center">
-    <h1>These are the results:</h1>
-    <p id="result">Fisrt information from the web</p>
-  </div>
-  <!-- Button trigger Register -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Register
-  </button>
-  <%- include('../partials/register-modal'); %>
+  <div class="wrapper-hero d-flex justify-content-center align-items-center">
+      <div class="hero-content justify-content-center">
+        <!--LOGO-->
+        <img src="images/leaves.png" style="width:200px; display:block; margin:auto;" alt="logo">
+        <h1 class="hero-title" ><span class="green">afteR</span><span class="white">Garden</span></h1>
+        <p class="hero-text text-light text-center">"make a project, make a change"</p>
+        <!-- Button trigger Register -->
+        <div class="button-container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Register</button>
+        <%- include('../partials/register-modal'); %>
 
-  <!-- Button trigger Register -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-login">
-    Log In
-  </button>
-  <%- include('../partials/login-modal'); %>
+        <!-- Button trigger Register -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-login">Log
+          In</button>
+        <%- include('../partials/login-modal'); %>
+      </div>
+      </div>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -37,7 +34,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 </body>
-<footer>
+<footer style="position: absolute;bottom: 10px;;">
   <%- include('../partials/footer'); %>
 </footer>
 

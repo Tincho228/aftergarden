@@ -1,13 +1,21 @@
 require('dotenv').config();
 //Controllers
 const AccountsController = require('./controllers/accountsController.js');
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var express = require("express");
+/*const session = require('express-session');*/
 const path = require('path');
 var app = express();
 app.use(express.urlencoded({extended:true}))//support url encoded bodies
-
+// set session 
+/*app.use(session({
+    secret: 'ssshhhhh',
+    name: cookie_name,
+    store: sessionStore, // connect-mongo session store
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));*/
 //Set public folder
 app.use (express.static("public"));
 
@@ -19,8 +27,6 @@ app.set("port", (process.env.PORT || 5000));
 // Index Page
 app.get('/', (req, res) => res.render('pages/home')) 
 app.post('/register',AccountsController.registerUser);
-app.get("/users", getPerson) // Returns a Json File
-app.get("/json", AccountsController.getJson);
 app.post('/login',AccountsController.login);
 
 

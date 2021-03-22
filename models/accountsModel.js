@@ -6,7 +6,7 @@ ssl: {
 }
 });
 
-function getusersFromDB(id,callback){
+/*function getusersFromDB(id,callback){
     // establishing params for sql
    var params = [id];
    // create slq statement
@@ -22,7 +22,9 @@ function getusersFromDB(id,callback){
        }
        callback(null, result);
    });   
-}
+}*/
+
+
 function registerUserinDB(client_username, client_email, client_password, callback){
     var params = [client_username, client_email, client_password];
     
@@ -77,7 +79,6 @@ function getClientinfo(client_username, callback){
 
 
 module.exports = {
-    getusersFromDB: getusersFromDB,
     registerUserinDB:registerUserinDB,
     checkExistingUser:checkExistingUser,
     getClientinfo:getClientinfo
