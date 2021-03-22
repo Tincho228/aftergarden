@@ -25,9 +25,10 @@ app.set('view engine', 'ejs');
 app.set("port", (process.env.PORT || 5000));
 
 // Index Page
-app.get('/', (req, res) => res.render('pages/home')) 
+app.get('/', (req, res) => res.render('pages/home')); 
 app.post('/register',AccountsController.registerUser);
 app.post('/login',AccountsController.login);
+app.get('/myportal',(req,res) => res.render('pages/myportal'));
 
 
 

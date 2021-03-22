@@ -1,11 +1,13 @@
 create database aftergarden; /* Local database */
 
 
-create table users (
-    user_id serial not null primary key,
-    user_name varchar(25) not null,
-    user_email varchar(25) not null,
-    user_password varchar(25) not null
+create table projects (
+    project_id serial not null primary key,
+    project_name varchar(25) not null,
+    project_description text not null,
+    project_date TIMESTAMP not null,
+    client_id int,
+    FOREIGN KEY (client_id) REFERENCES public.clients(client_id)
 );
 
 create table clients (
