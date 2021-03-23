@@ -98,3 +98,54 @@
       });//ajax function call
       
     });
+  
+// Create a project - Step 1
+$(document).ready(function(){
+  $("#submit_step1").click(function(){
+    console.log("processing step 1");
+    let project_name= $('#project_name').val();
+    let project_description= $('#project_description').val();
+    //check empty fields
+    if(!(project_name) || !(project_description)){
+      console.log("Please complete all empty fields");
+      $('#err_step1').html("Please complete all empty fields");
+      return;
+    }
+    params = {
+      project_name:project_name,
+      project_description:project_description
+    };
+    let message_step2 = '<div class="col-sm-12 col-md-6"><h2>Post your first comment - Step 2</h2><p id="err_step2" class="text-danger"></p><hr>';
+    message_step2 += '<form><div class="form-group""><label for="image_path">Upload the first image from scratch of your project</label><input type="file" class="form-control" style="border:none; id="image_name" aria-describedby="emailHelp" required></div>';
+    message_step2 +='<div class="form-group"><label for="image_commentary">Make any comment about it!</label><textarea class="form-control" id="project_description" aria-describedby="emailHelp" placeholder="Make a comment" required></textarea></div>';
+    message_step2 +='<input type="hidden" id="project_name" value="'+ project_name +'">';
+    message_step2 +='<input type="hidden" id="project_description" value="'+ project_description +'">';
+    message_step2 +='<div class="d-flex justify-content-end"><a class="btn btn-success text-light" onclick="submit_step2()">Post</a></div></form></div>';
+    message_step2 +='<div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center"><div class="image-container"><div><img class="img-fluid" src="images/placeholder.png" style="width:100px;" alt="share icon"></div></div></div>';
+    $('#message_step2').html(message_step2);
+    });//ajax function call
+    
+  });
+
+  //Create a project step 2
+  function submit_step2(){
+    console.log("processing step 2");
+    let project_name = $("#project_name").val();
+    let project_description = $("#project_description").val();
+    let image_path = $('#image_path').val();
+    let image_commentary = $('#image_commentary').val();
+    if (!(image_commentary) || !(image_path)){
+      console.log("Please complete all empty fields from step2");
+      $('#err_step2').html("Please complete all empty fields");
+      return;
+    }
+    let params = {
+      project_name:project_name,
+      project_description:project_description
+    }
+    // Make a post and create a project.
+    // When it comes back...
+    // make a post to create a first comment
+    // Congratulations message with the first project. Set done to reset the page.
+    // Send back to the portal.
+  }

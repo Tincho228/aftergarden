@@ -5,7 +5,7 @@ create table projects (
     project_id serial not null primary key,
     project_name varchar(25) not null,
     project_description text not null,
-    project_date TIMESTAMP not null,
+    project_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
     client_id int,
     FOREIGN KEY (client_id) REFERENCES public.clients(client_id)
 );
