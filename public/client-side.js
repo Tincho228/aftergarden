@@ -1,5 +1,5 @@
 /****************************
- * Query Database AJAX Request Accounts client-side
+ * This is the CLIENT SIDE *
  ****************************/
 
   // Register new client
