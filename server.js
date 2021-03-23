@@ -1,36 +1,38 @@
 require('dotenv').config();
-//Controllers
-const AccountsController = require('./controllers/accountsController.js');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-var express = require("express");
-/*const session = require('express-session');*/
+
+/******* CONTROLLERS ************/
+const AccountsController = require('./controllers/accountsController.js');
+const ProjectsController = require('./controllers/projectsController.js');
+
 const path = require('path');
+var express = require("express");
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 var app = express();
-app.use(express.urlencoded({extended:true}))//support url encoded bodies
-// set session 
-/*app.use(session({
-    secret: 'ssshhhhh',
-    name: cookie_name,
-    store: sessionStore, // connect-mongo session store
-    proxy: true,
-    resave: true,
-    saveUninitialized: true
-}));*/
-//Set public folder
+app.use(require('morgan')('dev'));
+
+//******* SET SESSION **********/
+app.use(session({
+  name: 'server-session-cookie-id',
+  secret: 'my express secret',
+  saveUninitialized: true,
+  resave: true,
+  store: new FileStore()
+}));
+
+app.use(express.urlencoded({extended:true}));
 app.use (express.static("public"));
-
-// set the view engine to ejs
 app.set('view engine', 'ejs');
-
 app.set("port", (process.env.PORT || 5000));
 
-// Index Page
+
 app.get('/', (req, res) => res.render('pages/home')); 
 app.post('/register',AccountsController.registerUser);
 app.post('/login',AccountsController.login);
 app.get('/myportal',(req,res) => res.render('pages/myportal'));
 
-
+app.post('/regProject',ProjectsController.regProject);
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));

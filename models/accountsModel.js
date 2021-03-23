@@ -57,7 +57,7 @@ function checkExistingUser(client_username, callback) {
 
 function getClientinfo(client_username, callback){
     console.log("Retrieving client information with user " + client_username);
-    var sql = "SELECT client_username, client_email, client_password FROM clients WHERE client_username ='"+ client_username +"'";
+    var sql = "SELECT client_id, client_username, client_email, client_password FROM clients WHERE client_username ='"+ client_username +"'";
     pool.query(sql,function(err, result){
         console.log(" we are querying DB for check email");
         if(err){
@@ -68,15 +68,6 @@ function getClientinfo(client_username, callback){
         callback(null,result);
     });
 }
-
-
-
-
-
-
-
-
-
 
 module.exports = {
     registerUserinDB:registerUserinDB,

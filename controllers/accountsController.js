@@ -1,5 +1,6 @@
 // require the module Models
 const { json } = require('express');
+const session = require('express-session');
 const AccountsModel = require('../models/accountsModel.js');
 
 // Register a new user
@@ -64,6 +65,9 @@ function login (req, res){
             }
             if (client_password === result.rows[0].client_password){
                 console.log("the users match");
+                let sess = req.session;
+                sess.client = result;
+                console.log(sess.client);
                 result = "loggedin";
                 return res.json({result});
             }
