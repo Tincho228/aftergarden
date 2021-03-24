@@ -40,11 +40,24 @@ function regPostinDB(post_description, post_image_path, project_id, callback){
 }  
 
 // Get project info by client_id
+function getProjectsinfo(client_id, callback){
+    var sql = "SELECT * FROM public.projects WHERE client_id = '"+ client_id +"' ";
+    pool.query(sql,function(err, result){
+        console.log("querying DB");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
 
 
 module.exports = {
     regProjectinDB:regProjectinDB,
-    regPostinDB:regPostinDB
+    regPostinDB:regPostinDB,
+    getProjectsinfo:getProjectsinfo
     
 }; 

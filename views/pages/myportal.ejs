@@ -12,14 +12,12 @@
     </div>
     <div class="row">
       <div class="col-4">
-        <h2>User Name</h2>
-        <img src="" alt="">
+        <img src="images/profile.jpg" alt="profile picture" class="profile_image">
+        <h3 class="text-center"><%= params[0].client_username %></h3>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">My portal</a>
-          <a href="#" class="list-group-item list-group-item-action">Account Settings</a>
+          <a href="/myportal" class="list-group-item list-group-item-action active">My portal</a>
+          <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
           <a href="#" class="list-group-item list-group-item-action">My projects</a>
-          <a href="#" class="list-group-item list-group-item-action">Action item</a>
-          <a href="#" class="list-group-item list-group-item-action">Action item</a>
           <a href="#" class="list-group-item list-group-item-action">Social projects</a>
           <a href="#" class="list-group-item list-group-item-action">Log out</a>
         </div>
@@ -29,28 +27,22 @@
           <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
           <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
         </div>
-        
-        <div class="row justify-content-center">
-          <h2>About us</h2>
+        <!-- about us section -->
+        <div class="row justify-content-center" style="margin:30px 0px;">
+          <h3>"About us"</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quidem non id ab quo porro eligendi
             consequuntur obcaecati necessitatibus voluptatibus! Iusto eius repellendus velit aliquam suscipit ut
             obcaecati exercitationem error, perspiciatis corrupti, dignissimos temporibus dolore expedita odit nulla
             maiores delectus, voluptatum natus asperiores assumenda! Perspiciatis in quam assumenda nobis earum?</p>
         </div>
-        <!-- change your behaviour -->
-        <div class="row">
-          <div class="col-6">
-            <h2>Change your behaviour</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, non blanditiis. Ratione facilis dolor sit asperiores, cupiditate quos quo alias eveniet exercitationem totam voluptates consectetur eos illum itaque voluptas, blanditiis ad doloremque? Minus eius, deleniti repellendus impedit placeat obcaecati distinctio!</p>
-            </div>
-          <div class="col-6">
-            <img class="img-fluid" src="images/login.jpg" alt="change your behavior">
-          </div>
-        </div>
-        <!-- change your behaviour -->
-        <div class="">
-          <h2>See other projects</h2>
+        
+        <!-- other projects section -->
+        <div class="row" style="margin-bottom:30px;">
+        <div class="col-6"> 
+          <h3>"More projects"</h3>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus voluptates recusandae ducimus tempore cupiditate minus vitae quia sequi excepturi veritatis?</p>
+        </div>
+        <div class="col-6">
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -59,13 +51,13 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="images/login.jpg" alt="First slide">
+                <img class="d-block w-100" src="images/carousel1.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="images/login.jpg" alt="Second slide">
+                <img class="d-block w-100" src="images/carousel2.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="images/login.jpg" alt="Third slide">
+                <img class="d-block w-100" src="images/carousel3.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -76,6 +68,17 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
+          </div>
+        </div>
+        </div>
+        <!-- change your behaviour section-->
+        <div class="row" style="margin-bottom:30px;">
+          <div class="col-6">
+            <h3>"Change and become tendency"</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, non blanditiis. Ratione facilis dolor sit asperiores, cupiditate quos quo alias eveniet exercitationem totam voluptates consectetur eos illum itaque voluptas, blanditiis ad doloremque? Minus eius, deleniti repellendus impedit placeat obcaecati distinctio!</p>
+            </div>
+          <div class="col-6">
+            <img class="img-fluid" src="images/tendency.jpg" alt="change your behavior">
           </div>
         </div>
       </div>

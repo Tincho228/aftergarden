@@ -1,6 +1,32 @@
 const { json } = require('express');
 const ProjectsModel = require('../models/projectsModel.js');
 
+// Display Portal View
+function portalView(req, res){
+    var sess=req.session;
+    console.log(sess.client);
+    params = sess.client.rows;
+    res.render('pages/myportal',params);
+}
+
+// Display Account view
+function accountView(req,res){
+    var sess=req.session;
+    console.log(sess.client);
+    params = sess.client.rows;
+    res.render('pages/account',params);
+}
+
+// Display Projects view
+function projectsView(req,res){
+    ProjectsModel.getProjectsinfo(client_id, function(req,res){
+        if(err){
+            console.log("There is an err from de Projects model");
+        }
+        res.json("OK");
+    });
+}
+
 
 // Register new project
 function regProject (req, res){
@@ -55,5 +81,8 @@ function regPost (req, res){
 
 module.exports = {
     regProject:regProject,
-    regPost:regPost
+    regPost:regPost,
+    portalView:portalView,
+    projectsView:projectsView,
+    accountView:accountView
 }; 

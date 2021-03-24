@@ -1,0 +1,30 @@
+ <!-- Modal -->
+ <div class="modal fade" id="edit_email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header bg-dark">
+       <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <div class="row">
+         <div class="col-sm-12 col-md-6"  id="login_message">
+          <h3>Edit Email</h3>
+          <p id="err_editEmail" class="text-danger"></p>
+          <hr>
+          <form>
+            <div class="form-group">
+              <label for="client_email">Email</label>
+              <input type="text" class="form-control" id="client_email" aria-describedby="emailHelp" value ='<%=  params[0].client_email  %>'> 
+            </div>
+            <a class="btn btn-danger text-light" id="changeEmail">Change Email</a>
+          </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

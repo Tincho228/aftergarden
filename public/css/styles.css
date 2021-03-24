@@ -61,3 +61,10 @@
 .portal-title {
     padding-top:80px;
 }
+.profile_image {
+    width:200px;
+    border-radius: 50%;
+    border:3px solid black;
+    display:block;
+    margin: 30px auto;
+}
