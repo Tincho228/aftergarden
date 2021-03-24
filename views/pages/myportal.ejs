@@ -15,11 +15,21 @@
     <li>Avance del projecto</li>
     <li>reviews del project</li>
   </ul>
-  <!-- Button trigger My projects -->
+  <!-- Button trigger Create a project -->
   <div class="button-container">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_project">Create a project</button>
     <%- include('../partials/project-modal'); %>
-    <!-- Create a project -->
+
+
+    <!-- upload an image -->
+    <form ref='uploadForm' 
+      id='uploadForm' 
+      action='http://localhost:5000/upload' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="sampleFile" />
+        <input type='submit' value='Upload!' />
+    </form>     
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

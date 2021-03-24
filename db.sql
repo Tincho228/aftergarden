@@ -1,5 +1,11 @@
 create database aftergarden; /* Local database */
 
+create table clients (
+    client_id serial not null primary key,
+    client_username varchar(100) not null,
+    client_email varchar(100) not null,
+    client_password varchar(250) not null
+);
 
 create table projects (
     project_id serial not null primary key,
@@ -10,11 +16,10 @@ create table projects (
     FOREIGN KEY (client_id) REFERENCES public.clients(client_id)
 );
 
-create table clients (
-    client_id serial not null primary key,
-    client_username varchar(100) not null,
-    client_email varchar(100) not null,
-    client_password varchar(250) not null
+create table images (
+    image_id serial not null primary key,
+    image_name text not null,
+    image_data varbinary(max) not null,
 );
 
 insert into public.users(user_name, user_email,user_password) values ('Jkirk', 'Kirk@mail.com','kirk1234');

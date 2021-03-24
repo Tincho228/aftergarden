@@ -130,7 +130,6 @@ $(document).ready(function(){
     console.log("processing step 2");
     let project_name = $("#project_name").val();
     let project_description = $("#project_description").val();
-    let client_id = 63; // obtain the client id from the session;/****************agregar *************** */
     let image_path = $('#image_path').val();
     let image_commentary = $('#image_commentary').val();
     /*if (!(image_commentary) || !(image_path)){
@@ -140,8 +139,7 @@ $(document).ready(function(){
     }*/
     let params = {
       project_name:project_name,
-      project_description:project_description,
-      client_id:client_id
+      project_description:project_description
     }
     $.post('/regProject',params, function(data){
       console.log('ajax success! :');
