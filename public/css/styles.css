@@ -49,3 +49,15 @@
     display:flex;
     justify-content: center;
 }
+
+/*  Portal style  */
+.portal-bg {
+    background-image: url("../images/portal-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height:300px;
+}
+.portal-title {
+    padding-top:80px;
+}

@@ -39,7 +39,7 @@ app.get('/myportal',(req,res) => res.render('pages/myportal'));
 app.post('/regProject',ProjectsController.regProject);
 
 
-app.post('/upload', ProjectsController.regImage);
+app.post('/regPost', ProjectsController.regPost);
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));

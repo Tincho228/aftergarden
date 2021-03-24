@@ -16,41 +16,44 @@ function regProject (req, res){
     });
 }
 
-function regImage (req, res){
+//Make a post
+
+function regPost (req, res){
     let sampleFile;
+    let post_description = req.body.post_description;
+    let project_id = 16; // Este valor tiene que venir del portal con un input hidden. Cuando arme la pantalla.
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
     }
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     sampleFile = req.files.sampleFile;
-    
-    
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // Look for a session
+    sess=req.session;
+    client_username = sess.client.rows[0].client_username;
     sampleFile = req.files.sampleFile;
-    uploadPath = './pictures/' + sampleFile.name;
+    uploadPath = './pictures/' + client_username +sampleFile.name;
 
+    //Data for Database
+    post_image_path = client_username + sampleFile.name;
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv(uploadPath, function(err) {
-    if (err)
+    if (err) {
       return res.status(500).send(err);
-
-    res.send('File uploaded!');
-    });
-
-
-    //Send image to the Model*/
-    /*ProjectsModel.regImageinDB(image_name, image_path, function(err, result){
+    }
+    
+    //Send image to the Model
+    ProjectsModel.regPostinDB(post_description, post_image_path, project_id, function(err, result){
         if(err){
             console.log("There is an err from de Projects model");
         }
-        res.json(result);
-    });*/
-    
-    
-    
+        return res.render('pages/myportal');
+    });
+
+    });
+
 }
 
 module.exports = {
     regProject:regProject,
-    regImage:regImage
+    regPost:regPost
 }; 

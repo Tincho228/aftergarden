@@ -16,10 +16,13 @@ create table projects (
     FOREIGN KEY (client_id) REFERENCES public.clients(client_id)
 );
 
-create table images (
-    image_id serial not null primary key,
-    image_name text not null,
-    image_data varbinary(max) not null,
+create table posts (
+    post_id serial not null primary key,
+    post_description text not null,
+    post_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
+    post_image_path TEXT not null,
+    project_id int,
+    FOREIGN KEY (project_id) REFERENCES public.projects(project_id)
 );
 
 insert into public.users(user_name, user_email,user_password) values ('Jkirk', 'Kirk@mail.com','kirk1234');

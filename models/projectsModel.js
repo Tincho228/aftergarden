@@ -23,10 +23,10 @@ function regProjectinDB(project_name, project_description,client_id, callback){
     });
 
 }
-// Register a new image i
-function regImageinDB(image_name, image_path, callback){
-    console.log(image_data);
-    var sql = "SELECT image_data from public.images (image_name, image_data) values ('"+image_name+"','"+image_path+"')";
+// Register a new post i
+function regPostinDB(post_description, post_image_path, project_id, callback){
+    
+    var sql = "INSERT into public.posts (post_description, post_image_path, project_id) values ('"+ post_description +"','"+ post_image_path +"','"+ project_id +"')";
     
     pool.query(sql,function(err, result){
         console.log("querying DB");
@@ -37,11 +37,14 @@ function regImageinDB(image_name, image_path, callback){
         }
         callback(null,result);
     });
-}    
+}  
+
+// Get project info by client_id
+
 
 
 module.exports = {
     regProjectinDB:regProjectinDB,
-    regImageinDB:regImageinDB
+    regPostinDB:regPostinDB
     
 }; 

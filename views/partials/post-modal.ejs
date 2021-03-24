@@ -1,0 +1,49 @@
+ <!-- Modal -->
+ <div class="modal fade" id="create_post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header bg-dark">
+                 <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <div class="row">
+                     <div class="col-sm-12 col-md-6" id="message_step2">
+                         <h2>Create a Post</h2>
+                         <p id="err_step1" class="text-danger"></p>
+                         <hr>
+                         <form ref='uploadForm' id='uploadForm' method='post' action="/regPost" encType="multipart/form-data">
+                             <!-- upload an image -->
+                             <div class="form-group">
+                                 <label for="sampleFile">Upload a picture</label>
+                                 <input type="file" name="sampleFile" class="form-control" id="sampleFile"
+                                     aria-describedby="emailHelp" placeholder="Tell us more about your picture"
+                                     required>
+                             </div>
+                             <!-- Add a comment -->
+                             <div class="form-group">
+                                 <label for="post_description">Comments</label>
+                                 <textarea class="form-control" name="post_description" aria-describedby="emailHelp"
+                                     placeholder="Tell us more about your picture" required></textarea>
+                             </div>
+                             <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success" value="Post!">POST!</button>
+                             </div>
+                         </form>
+                     </div>
+                     <div class="col-sm-12 col-md-6">
+                         <div class="image-container">
+                             <img src="images/good-start.jpg" style="width:100%;" alt="login image">
+                             <div class="login-image-title">
+                                 <h2>Start from scratch!</h2>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
