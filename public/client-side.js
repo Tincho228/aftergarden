@@ -73,7 +73,7 @@
             // code block
             var login_message = "<h1 class='text-center' style='position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);'>";
             login_message += "Wellcome back!!!<br>You are logged in</h1>";
-            login_message += '<div class="modal-footer"><a href="/" class="btn btn-secondary" style="position:absolute; bottom:10px;">Save changes</a>"</div>';
+            login_message += '<div class="modal-footer"><a href="/myportal" class="btn btn-secondary" style="position:absolute; bottom:10px;">My portal</a>"</div>';
             $('#login_message').html(login_message);
             break;
           case 'err_password':
@@ -130,7 +130,7 @@ $(document).ready(function(){
     
   });
 
-  // Change Email 
+  // Update Email 
   $(document).ready(function(){
     $("#changeEmail").click(function(){
       console.log("Changing email");
@@ -141,7 +141,41 @@ $(document).ready(function(){
       }
       $.post('/changeEmail',params, function(data){
         console.log('ajax success! :'+ data);
+        if(data === 'success'){
+          $('#err_changeEmail').html("Your email has been updated");
+          let newbtn = '<a href="/account" class="btn btn-dark text-light">Save changes</a>';
+          $('#addbutton_save').html(newbtn);
+        return;  
+        }
         $('#err_changeEmail').html(data);
+      });
+      
+      
+      });//ajax function call
+      
+    });
+  
+  // Change Passwords
+  $(document).ready(function(){
+    $("#changePassword").click(function(){
+      console.log("Changing email");
+      let client_password= $('#client_password').val();
+      let repeat_password= $('#repeat_password').val();
+      
+      //check empty fields
+      let params = {
+        client_password:client_password,
+        repeat_password:repeat_password
+      }
+      $.post('/changePassword',params, function(data){
+        console.log('ajax success! :'+ data);
+        if(data === 'success'){
+          $('#err_changePassword').html("Your password has been updated");
+          let newbtn = '<a href="/account" class="btn btn-dark text-light">Save changes</a>';
+          $('#addbutton_save_password').html(newbtn);
+        return;  
+        }
+        $('#err_changePassword').html(data);
       });
       
       

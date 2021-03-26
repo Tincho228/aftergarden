@@ -1,6 +1,7 @@
 // require the module Models
 const { json } = require('express');
 const session = require('express-session');
+const accountsModel = require('../models/accountsModel.js');
 const AccountsModel = require('../models/accountsModel.js');
 
 // Register a new user
@@ -88,24 +89,62 @@ function changeEMail (req, res){
     }
     // Checking email
     let sess = req.session;
-    let client_username = sess.client.rows[0].client_username;
-    AccountsModel.getClientinfo(client_username, function(err, result){
+    
+    if (client_email === sess.client.rows[0].client_email){
+        console.log("the emails are the same");
+        return res.json("Emails are the same. Try again");
+    }
+    AccountsModel.checkExistingEmail(client_email, function(err, result){
         if(err){
             console.log("There is an err from the model");
         }
-        if (client_email === result.rows[0].client_email){
-            console.log("the emails are the same");
-            return res.json("Emails are the same. Try again");
+        if(result.rowCount === 1){
+            console.log("Email already registered. Try again");
+            return res.json("Email already registered. Try again");
         }
-        
-        res.json("Now we can change passwords.");
+        let client_id = sess.client.rows[0].client_id;
+        AccountsModel.changeEMailinDB(client_id, client_email, function(err, result){
+            if(err){
+                console.log("There is an err from the model");
+            }
+                console.log("Change email success");
+                sess.client.rows[0].client_email = client_email;
+                console.log('Your new email has been changed to' + sess.client.rows[0].client_email);
+                res.json("success");
+            
+        });
 
     }) ;
 
+}
+// Change password 
+function changePassword(req,res){
+    let sess = req.session;
+    let client_password = req.body.client_password;
+    let repeat_password = req.body.repeat_password;
+    if(!(client_password) || !(repeat_password)){
+        console.log("Please complete all epty fields");
+        return res.json("Complete all empty fields");
+    }
+    if (client_password != repeat_password){
+        console.log("Passwords are not equal");
+        return res.json("Passwords are not equal");
+    }
+    // send data to the model
+    let client_id = sess.client.rows[0].client_id;
+    AccountsModel.changePasswordinDB(client_id, client_password, function(err, result){
+        if(err){
+            console.log("There is an err from the model");
+        }
+            sess.client.rows[0].client_password = client_password;
+            console.log("Changing password");
+            res.json("success");
+    });
 }
 
 module.exports = {
     registerUser:registerUser,
     login:login,
-    changeEMail:changeEMail
+    changeEMail:changeEMail,
+    changePassword:changePassword
 }; 

@@ -35,11 +35,12 @@ app.get('/', (req, res) => res.render('pages/home'));
 app.post('/register',AccountsController.registerUser);
 app.post('/login',AccountsController.login);
 app.post('/changeEmail', AccountsController.changeEMail);
+app.post('/changePassword', AccountsController.changePassword);
 
 app.get('/myportal', ProjectsController.portalView);
 app.get('/account', ProjectsController.accountView);
 
-
+app.get('/projects', ProjectsController.projectsView);
 app.post('/regProject',ProjectsController.regProject);
 
 

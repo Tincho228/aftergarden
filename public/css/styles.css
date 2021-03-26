@@ -68,3 +68,9 @@
     display:block;
     margin: 30px auto;
 }
+
+/*  Project styles  */
+
+.card:hover {
+    box-shadow: 1px 1px 9px #0000007a;
+}

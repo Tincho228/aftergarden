@@ -12,21 +12,30 @@ function portalView(req, res){
 // Display Account view
 function accountView(req,res){
     var sess=req.session;
-    console.log(sess.client);
     params = sess.client.rows;
     res.render('pages/account',params);
 }
 
 // Display Projects view
 function projectsView(req,res){
-    ProjectsModel.getProjectsinfo(client_id, function(req,res){
+    var sess=req.session;
+    let client_id = sess.client.rows[0].client_id;
+    let params = sess.client.rows;
+    
+
+    ProjectsModel.getProjectsinfo(client_id, function(err,result){
         if(err){
             console.log("There is an err from de Projects model");
         }
-        res.json("OK");
+        let info = result.rows;
+        data = {
+            params:params,
+            info:info
+          };  
+        console.log(data);
+    res.render('pages/projects',data);   
     });
 }
-
 
 // Register new project
 function regProject (req, res){
