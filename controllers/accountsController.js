@@ -79,7 +79,33 @@ function login (req, res){
     
 }
 
+// Change Email
+function changeEMail (req, res){
+    client_email = req.body.client_email;
+    // Checking missing data
+    if(!(client_email)){
+        return res.json("Complete all missing data");
+    }
+    // Checking email
+    let sess = req.session;
+    let client_username = sess.client.rows[0].client_username;
+    AccountsModel.getClientinfo(client_username, function(err, result){
+        if(err){
+            console.log("There is an err from the model");
+        }
+        if (client_email === result.rows[0].client_email){
+            console.log("the emails are the same");
+            return res.json("Emails are the same. Try again");
+        }
+        
+        res.json("Now we can change passwords.");
+
+    }) ;
+
+}
+
 module.exports = {
     registerUser:registerUser,
-    login:login
+    login:login,
+    changeEMail:changeEMail
 }; 

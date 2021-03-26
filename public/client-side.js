@@ -129,3 +129,22 @@ $(document).ready(function(){
     });//ajax function call
     
   });
+
+  // Change Email 
+  $(document).ready(function(){
+    $("#changeEmail").click(function(){
+      console.log("Changing email");
+      let client_email= $('#client_email').val();
+      //check empty fields
+      let params = {
+        client_email:client_email
+      }
+      $.post('/changeEmail',params, function(data){
+        console.log('ajax success! :'+ data);
+        $('#err_changeEmail').html(data);
+      });
+      
+      
+      });//ajax function call
+      
+    });

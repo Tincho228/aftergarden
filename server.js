@@ -34,9 +34,11 @@ app.set("port", (process.env.PORT || 5000));
 app.get('/', (req, res) => res.render('pages/home')); 
 app.post('/register',AccountsController.registerUser);
 app.post('/login',AccountsController.login);
+app.post('/changeEmail', AccountsController.changeEMail);
 
 app.get('/myportal', ProjectsController.portalView);
 app.get('/account', ProjectsController.accountView);
+
 
 app.post('/regProject',ProjectsController.regProject);
 

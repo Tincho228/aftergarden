@@ -13,12 +13,12 @@
        <div class="row">
          <div class="col-sm-12 col-md-6"  id="login_message">
           <h3>Edit Email</h3>
-          <p id="err_editEmail" class="text-danger"></p>
+          <p id="err_changeEmail" class="text-danger"></p>
           <hr>
           <form>
             <div class="form-group">
               <label for="client_email">Email</label>
-              <input type="text" class="form-control" id="client_email" aria-describedby="emailHelp" value ='<%=  params[0].client_email  %>'> 
+              <input type="text" class="form-control" id="client_email" aria-describedby="emailHelp" value ='<%=  params[0].client_email  %>' required> 
             </div>
             <a class="btn btn-danger text-light" id="changeEmail">Change Email</a>
           </form>
