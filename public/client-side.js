@@ -121,7 +121,7 @@ $(document).ready(function(){
       
       let message_step2 ="<h1 class='text-center' style='position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);'>";
       message_step2 += "Project successfully created<br>Make your first post</h1>";
-      message_step2 += '<div class="modal-footer"><a href="/myportal" class="btn btn-secondary" style="position:absolute; bottom:10px;">Save changes</a>"</div>';
+      message_step2 += '<div class="modal-footer"><a href="/projects" class="btn btn-secondary" style="position:absolute; bottom:10px;">Save changes</a>"</div>';
       $('#message_step2').html(message_step2);
     });
 
@@ -182,3 +182,72 @@ $(document).ready(function(){
       });//ajax function call
       
     });
+
+    // Delete project - Modal message
+    function deleteProject(comp){
+      let project_id = comp.id;
+      console.log("Deleting project with id: "+project_id);
+      if(project_id){
+      $('#deleteProject-modal').modal('show');
+      $('#confirm-delete').click(function(){
+        let params = {project_id:project_id};
+        $.post('/deleteProject',params, function(data){
+        console.log('ajax success! :'+ data);
+        if(data === "success"){
+        let deleteProject_message = '<h3 class="text-center">Project deleted!!!</h3>';
+        deleteProject_message+= '<div class="d-flex justify-content-center"><a href="/projects" class="btn btn-dark">Save changes</a></div>';
+        $('#deleteProject_message').html(deleteProject_message);
+        return;}
+
+        });
+      });
+      }
+      return;
+    }
+    // Edit project - Modal message
+    function editProject(comp){
+      let project_id = comp.id;
+      console.log("Editing project with id: "+project_id);
+      if(project_id){
+      params = {
+        project_id:project_id
+      }
+      $.get('/projectInfo',params, function(data){
+          console.log('ajax success! :'+ data);
+          
+          let message_editProject1 ='<label for="project_name">Title</label>';
+          message_editProject1 += '<input type="text" class="form-control" id="editProjec_project_name" aria-describedby="emailHelp" value="'+ data[0].project_name +'">';
+          
+          let message_editProject2 ='<label for="project_description">Description</label>';
+          message_editProject2 += '<textarea class="form-control" id="editProjec_project_description" aria-describedby="emailHelp">'+ data[0].project_description +'</textarea>';
+          message_editProject2 += '<input id="editProject_project_id" type="hidden" value="'+ project_id +'" >';
+
+          $('#message_editProject1').html(message_editProject1);
+          $('#message_editProject2').html(message_editProject2);    
+          $('#editProject-modal').modal('show');
+          
+      });
+      
+      }
+    }
+
+    // Edit project - send data to the server
+      function projectEdit_setp2(){
+        console.log("step2");
+      let project_name = $('#editProjec_project_name').val();
+      let project_description = $('#editProjec_project_description').val();
+      let project_id =$('#editProject_project_id').val();
+      params = {
+        project_id:project_id,
+        project_name:project_name,
+        project_description:project_description
+      }
+      $.post('/projectEdit',params, function(data){
+          if(data === "success"){
+            let message_projectEdit_success = '<h3 class="text-center">Your project has been updated!!!</h3><hr>';
+            message_projectEdit_success += '<div class="d-flex justify-content-center"><a href="/projects" class="btn btn-dark">Save changes</a></div>';
+            $('#message_projecEdit_success').html(message_projectEdit_success);
+          }
+          console.log(data);
+      });
+    }

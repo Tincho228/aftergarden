@@ -52,12 +52,54 @@ function getProjectsinfo(client_id, callback){
         callback(null,result);
     });
 }
+// Delete a project
+function deletePorjectinDB(project_id, callback){
+    var sql = "DELETE  FROM public.projects WHERE project_id = '"+ project_id +"' ";
+    pool.query(sql,function(err, result){
+        console.log("querying DB");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
+// Get info from database about a specific project 
+function getSpecificProjectInfo(project_id, callback){
+    var sql = "SELECT * FROM public.projects WHERE project_id = '"+ project_id +"'";
+    pool.query(sql,function(err, result){
+        console.log("querying DB");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
+
+// Update project information
+function projectEditinDB(project_id, project_name, project_description, callback){
+    var sql = "UPDATE public.projects SET project_name='"+ project_name +"',project_description ='"+ project_description +"' WHERE project_id = '"+ project_id +"'";
+    pool.query(sql,function(err, result){
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
 
 module.exports = {
     regProjectinDB:regProjectinDB,
     regPostinDB:regPostinDB,
-    getProjectsinfo:getProjectsinfo
+    getProjectsinfo:getProjectsinfo,
+    deletePorjectinDB:deletePorjectinDB,
+    getSpecificProjectInfo:getSpecificProjectInfo,
+    projectEditinDB:projectEditinDB
     
 }; 

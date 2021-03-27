@@ -32,7 +32,6 @@ function projectsView(req,res){
             params:params,
             info:info
           };  
-        console.log(data);
     res.render('pages/projects',data);   
     });
 }
@@ -85,7 +84,46 @@ function regPost (req, res){
     });
 
     });
+}
+// Delete a project
+function deleteProject(req, res){
 
+    let project_id = req.body.project_id;
+    sess=req.session;
+    client_id = sess.client.rows[0].client_id;
+    // Send data to the model
+    ProjectsModel.deletePorjectinDB(project_id, function(err, result){
+        if(err){
+            console.log("There is an err from de Projects model");
+        }
+        result="success";
+        res.json(result);
+    });
+}
+// Retrieve information for the Edit-project-Modal content
+function projectInfo(req,res){
+    let project_id = req.query.project_id;
+    ProjectsModel.getSpecificProjectInfo(project_id, function(err,result){
+        if(err){
+            console.log("There is an err from de Projects model");
+        }
+        res.json(result.rows);
+    });
+}
+function projectEdit(req,res){
+    let project_id = req.body.project_id;
+    let project_name = req.body.project_name;
+    let project_description = req.body.project_description;
+    if(!(project_id) || !(project_name) || !(project_description)){
+        res.json("Please complete all empty fields");
+    }
+    // Sending data to the model
+    ProjectsModel.projectEditinDB(project_id, project_name, project_description, function(err,result){
+        if(err){
+            console.log("There is an err from de Projects model");
+        }
+        res.json("success");
+    });
 }
 
 module.exports = {
@@ -93,5 +131,8 @@ module.exports = {
     regPost:regPost,
     portalView:portalView,
     projectsView:projectsView,
-    accountView:accountView
+    accountView:accountView,
+    deleteProject:deleteProject,
+    projectInfo:projectInfo,
+    projectEdit:projectEdit
 }; 

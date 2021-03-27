@@ -42,6 +42,10 @@ app.get('/account', ProjectsController.accountView);
 
 app.get('/projects', ProjectsController.projectsView);
 app.post('/regProject',ProjectsController.regProject);
+app.post('/deleteProject', ProjectsController.deleteProject);
+app.get('/projectInfo', ProjectsController.projectInfo);
+app.post('/projectEdit',ProjectsController.projectEdit);
+
 
 
 app.post('/regPost', ProjectsController.regPost);
