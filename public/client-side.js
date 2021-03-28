@@ -251,3 +251,19 @@ $(document).ready(function(){
           console.log(data);
       });
     }
+    // Blog view
+    function blogView(comp){
+      let project_id = comp.id;
+      params = {
+        project_id:project_id
+      }
+      $.get('/blogView',params, function(data){
+        console.log("Ajax success");
+        let posts = '<div class="posts_wrapper">';
+        for(var i=0; i<data.length;i++){
+          posts += '<div class=""post-container>';
+          
+        }
+        posts+= '</div>';
+      });
+    }

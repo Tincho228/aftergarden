@@ -28,9 +28,9 @@
           <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
           <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
         </div>
-        <h2>Projects</h2>
+        <h2 style="margin-top:30px;">Projects</h2>
         <hr style="margin-bottom:30px;">
-        <div class="row justify-content-between">
+        <div class="row justify-content-between" id="test">
           <% for (var i=0; i < info.length ; i++){%>
           <div class="card" style="width: 15rem;margin-bottom:30px;">
             <img class="card-img-top" src="images/good-start.jpg" alt="Card image cap of <%= info[i].project_name%>">
@@ -38,11 +38,11 @@
               <h5 class="card-title"><%= info[i].project_name%></h5>
               <p class="card-text"><%= info[i].project_description%></p>
               <div class="d-flex">
-                <a href="#" class="btn btn-dark">Visit now</a>
+                <a type="button" id="<%= info[i].project_id %>" onclick="blogView(this)" title="Visit blog" class="btn btn-dark text-light">Visit blog</a>
                 <div class="d-flex align-items-center">
                   <!-- Button trigger the delete post -->
                   <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete project"
-                    type="button" name="btnDelete" id="<%= info[i].project_id %>" onclick="deleteProject(this)"><i
+                    type="button" name="btnBlog" id="<%= info[i].project_id %>" onclick="deleteProject(this)"><i
                       class="fas fa-trash text-secondary"></i></a>
 
                   <!-- Button trigger the edit post -->

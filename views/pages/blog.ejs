@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row bg-dark">
+      <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <img src="images/profile.jpg" alt="profile picture" class="profile_image">
+        <h3 class="text-center"><%= params[0].client_username %></h3>
+        <div class="list-group">
+          <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
+          <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
+          <a href="/projects" class="list-group-item list-group-item-action active">My projects</a>
+          <a href="" class="list-group-item list-group-item-action">Social projects</a>
+          <a href="#" class="list-group-item list-group-item-action">Log out</a>
+        </div>
+      </div>
+      <!-- Project Colummn -->
+      <div class="col-8 ">
+        <div class="container-fluid bg-light portal-bg">
+          <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
+          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+        </div>
+        <h3 style="margin-top:30px;">Project name - My Blog</h3>
+        <hr style="margin-bottom:30px;">
+        <div class="row">
+          <div class="col"  style="border:1px solid lightgray;margin:15px; border-radius:15px;">
+          <div class="row" style="margin:15px 0px">  
+              <div class="col-6"><img class="img-thumbnail" style="width:70%;" src="images/login.jpg" alt="image of post"></div>
+              <div class="col-6"></div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <p><strong>Posted on set 4, 2021, 4pm</strong></p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Quos placeat, ab officia facilis fugit suscipit sequi illum autem impedit explicabo.</p>
+              </div>    
+          </div>
+        </div> 
+        </div>
+        <div class="row">
+          <div class="col">
+          <div class="card">
+            <div class="card-header bg-primary text-light">
+              Comments
+            </div>
+            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+              <p class="card-title">User</p>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+              <p class="card-title">User</p>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+              <p class="card-title">User</p>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+           
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  <!-- Button trigger Create a post -->
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_post">Create a post</button>
+  <%- include('../partials/post-modal'); %>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</html>

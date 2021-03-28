@@ -4,6 +4,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 /******* CONTROLLERS ************/
 const AccountsController = require('./controllers/accountsController.js');
 const ProjectsController = require('./controllers/projectsController.js');
+const BlogsController = require('./controllers/blogsController.js');
 
 const path = require('path');
 var express = require("express");
@@ -45,6 +46,14 @@ app.post('/regProject',ProjectsController.regProject);
 app.post('/deleteProject', ProjectsController.deleteProject);
 app.get('/projectInfo', ProjectsController.projectInfo);
 app.post('/projectEdit',ProjectsController.projectEdit);
+
+app.get('/blogView',BlogsController.blogView);
+
+app.get('/test', (req,res) => {
+  let sess = req.session;
+  params = sess.client.rows;
+  res.render('pages/blog',params);
+});
 
 
 
