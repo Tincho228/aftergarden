@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 
 /******* CONTROLLERS ************/
 const AccountsController = require('./controllers/accountsController.js');
@@ -14,6 +16,7 @@ const fileUpload = require('express-fileupload');
 const projectsController = require('./controllers/projectsController.js');
 var app = express();
 app.use(require('morgan')('dev'));
+
 
 //******* SET SESSION **********/
 app.use(session({
@@ -50,6 +53,8 @@ app.post('/projectEdit',ProjectsController.projectEdit);
 app.get('/blogView',BlogsController.blogView);
 
 app.get('/test', (req,res) => {
+  let id = req.query.project_id;
+  console.log(id); // continuar con 
   let sess = req.session;
   params = sess.client.rows;
   res.render('pages/blog',params);
