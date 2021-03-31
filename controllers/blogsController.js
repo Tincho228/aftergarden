@@ -1,5 +1,8 @@
 const BlogsModel = require('../models/blogsModel.js'); 
+const CommentsModel = require('../models/commentsModel.js');
 const ProjectsModel = require('../models/projectsModel.js');
+
+
 
 
 function blogView(req,res){
@@ -16,14 +19,22 @@ function blogView(req,res){
         ProjectsModel.getSpecificProjectInfo(project_id, function(err,result){
             if(err){
                 console.log("There is an err from the Projects model")
-            }    
-            let info = result.rows;
-            data = {
-                params:params,
-                blog_info:blog_info,
-                info:info
             }
-            res.render('pages/blog',data);
+            let info = result.rows;    
+            CommentsModel.getSpecificComments(project_id, function(err, result){
+                if(err){
+                    console.log("There is an err from the Blogs model")
+                }
+                let comment_info = result.rows;
+                data = {
+                    params:params,
+                    blog_info:blog_info,
+                    info:info,
+                    comment_info:comment_info
+                }
+                console.log(comment_info);
+                res.render('pages/blog',data);
+            });
         });
     });
 }

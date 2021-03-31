@@ -7,13 +7,13 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const AccountsController = require('./controllers/accountsController.js');
 const ProjectsController = require('./controllers/projectsController.js');
 const BlogsController = require('./controllers/blogsController.js');
+const CommentsController = require('./controllers/commentsController.js');
 
 const path = require('path');
 var express = require("express");
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 const fileUpload = require('express-fileupload');
-const projectsController = require('./controllers/projectsController.js');
 var app = express();
 app.use(require('morgan')('dev'));
 
@@ -56,6 +56,9 @@ app.post('/postDelete', BlogsController.postDelete);
 
 
 app.post('/regPost', ProjectsController.regPost);
+
+
+app.post('/makeComment', CommentsController.makeComment);
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));

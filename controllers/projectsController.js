@@ -22,7 +22,6 @@ function projectsView(req,res){
     let client_id = sess.client.rows[0].client_id;
     let params = sess.client.rows;
     
-
     ProjectsModel.getProjectsinfo(client_id, function(err,result){
         if(err){
             console.log("There is an err from de Projects model");
@@ -55,7 +54,7 @@ function regProject (req, res){
 function regPost (req, res){
     let sampleFile;
     let post_description = req.body.post_description;
-    let project_id = 16; // Este valor tiene que venir del portal con un input hidden. Cuando arme la pantalla.
+    let project_id = req.body.project_id; // Este valor tiene que venir del portal con un input hidden. Cuando arme la pantalla.
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
     }
@@ -80,7 +79,9 @@ function regPost (req, res){
         if(err){
             console.log("There is an err from de Projects model");
         }
-        res.redirect(req.get('referer'));
+        console.log(project_id);
+        let ref = "/blogView?project_id="+project_id;
+        res.redirect(ref);
     });
 
     });

@@ -42,7 +42,7 @@
         <div class="">
           <% for(var i=0; i < blog_info.length ; i++) {%>
           <div class="row" style="border:1px solid lightgray;margin:15px 0px; border-radius:15px;padding:15px;">
-            <div class="col-5"><img class="img-thumbnail" style="width:80%;" src="images/login.jpg" alt="image of post">
+            <div class="col-5"><img class="img-thumbnail" style="width:80%;" src="<%= blog_info[i].post_image_path %>" alt="image of post">
             </div>
             <div class="col-7">
 
@@ -75,19 +75,18 @@
               <div class="card-header bg-primary text-light">
                 Comments
               </div>
+              <% for(var i=0; i < comment_info.length; i++){ %>
               <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-                <p class="card-title">User</p>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-title"><%= comment_info[i].client_username%> posted on <%= comment_info[i].comment_date %></p>
+                <p class="card-text"><%= comment_info[i].comment_body %></p>
               </div>
-              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-                <p class="card-title">User</p>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <% } %>
+              <p id="err_message_comment" class="text-danger" style="margin-left:5px;" ></p>
+              <div class="input-group mb-2 align-items-center" style="background-color: burlywood;">
+                
+                <input style="margin:5px; border-radius:15px" type="text" class="form-control" placeholder="Make a comment" aria-label="Make a comment" aria-describedby="button-addon2" id="comment_body">
+                <a class="btn btn-success text-light" type="button" id="<%= info[0].project_id%>" onclick="makeComment(this)"><i class="fa fa-play" aria-hidden="true"></i> Send</a>
               </div>
-              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-                <p class="card-title">User</p>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              </div>
-
             </div>
           </div>
         </div>

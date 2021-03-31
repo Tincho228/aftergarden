@@ -270,3 +270,25 @@ function deletePost(comp){
   });
   
 }    
+// Register a comment
+function makeComment(comp){
+  let comment_body = $('#comment_body').val();
+  let project_id = comp.id;
+  params = {
+    comment_body:comment_body,
+    project_id:project_id
+  }
+  $.post('/makeComment',params, function(data){
+    if(data === "empty"){
+      $('#err_message_comment').html("Empty comments not allowed!!");
+      return;
+    }
+    if(data === "success"){
+      console.log(data);
+      location.reload();
+    return;
+    }
+
+  });
+
+}

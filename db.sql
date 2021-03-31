@@ -25,10 +25,15 @@ create table posts (
     FOREIGN KEY (project_id) REFERENCES public.projects(project_id)
 );
 
-insert into public.users(user_name, user_email,user_password) values ('Jkirk', 'Kirk@mail.com','kirk1234');
-insert into public.users(user_name, user_email,user_password) values ('Rclark', 'clark@mail.com','Rclark1234');
-insert into public.users(user_name, user_email,user_password) values ('MBless', 'Bless@mail.com','Bless1234');
-insert into public.users(user_name, user_email,user_password) values ('Lopanfer', 'Lopan@mail.com','Lopan1234');
+create table comments (
+    comment_id serial not null primary key,
+    comment_body text not null,
+    comment_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
+    client_id int,
+    project_id int,
+    FOREIGN KEY (client_id) REFERENCES public.clients(client_id),
+    FOREIGN KEY (project_id) REFERENCES public.projects(project_id)
+);
 
 create user aftergardenuser with password 'aftergarden';
 grant update, select, insert on users to aftergardenuser;
