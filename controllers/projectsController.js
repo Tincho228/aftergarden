@@ -80,7 +80,7 @@ function regPost (req, res){
         if(err){
             console.log("There is an err from de Projects model");
         }
-        return res.render('pages/myportal');
+        res.redirect(req.get('referer'));
     });
 
     });

@@ -38,7 +38,7 @@
               <h5 class="card-title"><%= info[i].project_name%></h5>
               <p class="card-text"><%= info[i].project_description%></p>
               <div class="d-flex">
-                <form action="/test" method="GET">
+                <form action="/blogView" method="GET">
                  <input type="hidden" name="project_id" value="<%= info[i].project_id %>"> 
                 <button  type="submit" title="Visit blog" class="btn btn-dark text-light">Visit blog</button>
               </form>

@@ -51,14 +51,7 @@ app.get('/projectInfo', ProjectsController.projectInfo);
 app.post('/projectEdit',ProjectsController.projectEdit);
 
 app.get('/blogView',BlogsController.blogView);
-
-app.get('/test', (req,res) => {
-  let id = req.query.project_id;
-  console.log(id); // continuar con 
-  let sess = req.session;
-  params = sess.client.rows;
-  res.render('pages/blog',params);
-});
+app.post('/postDelete', BlogsController.postDelete);
 
 
 

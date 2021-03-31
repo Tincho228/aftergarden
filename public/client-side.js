@@ -251,19 +251,22 @@ $(document).ready(function(){
           console.log(data);
       });
     }
-    // Blog view
-    function blogView(comp){
-      let project_id = comp.id;
-      params = {
-        project_id:project_id
-      }
-      $.get('/blogView',params, function(data){
-        console.log("Ajax success");
-        let posts = '<div class="posts_wrapper">';
-        for(var i=0; i<data.length;i++){
-          posts += '<div class=""post-container>';
-          
-        }
-        posts+= '</div>';
+// Delete Post
+function deletePost(comp){
+  let post_id = comp.id;
+  console.log(post_id);
+  
+  $('#deletePost-modal').modal('show');
+  $('#confirm-delete-post').click(function(){
+      let params = {post_id:post_id};
+      $.post('/postDelete',params, function(data){
+          if(data === "success"){
+          console.log(data);
+          location.reload();
+          return;
+          }
+
       });
-    }
+  });
+  
+}    

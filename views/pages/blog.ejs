@@ -29,69 +29,80 @@
           <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
           <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
         </div>
-        <h3 style="margin-top:30px;">Project name - My Blog</h3>
+        <h3 style="margin-top:30px;"><%= info[0].project_name %>- Blog</h3>
+
+        <!-- Button trigger Create a post -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create_post">Create a
+          post</button>
+        <%- include('../partials/post-modal'); %>
+
         <hr style="margin-bottom:30px;">
-        <!--  Post card  -->        
-        <div class="row">
-               <div class="row" style="border:1px solid lightgray;margin:15px; border-radius:15px;padding:15px;">  
-                  <div class="col-5"><img class="img-thumbnail" style="width:80%;" src="images/login.jpg" alt="image of post"></div>
-                  <div class="col-7">
-                      <p><strong>Posted on set 4, 2021, 4pm</strong></p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                      Quos placeat, ab officia facilis fugit suscipit sequi illum autem impedit explicabo.</p>
+        <!--  Post card  -->
 
-                      <div class="d-flex align-items-center">
-                          <!-- Button trigger the delete post -->
-                          <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete project" type="button" name="btnBlog" id="" ><i class="fas fa-trash text-secondary"></i></a>
+        <div class="">
+          <% for(var i=0; i < blog_info.length ; i++) {%>
+          <div class="row" style="border:1px solid lightgray;margin:15px 0px; border-radius:15px;padding:15px;">
+            <div class="col-5"><img class="img-thumbnail" style="width:80%;" src="images/login.jpg" alt="image of post">
+            </div>
+            <div class="col-7">
 
-                          <!-- Button trigger the edit post -->
-                          <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Edit project" type="button" name="btnEdit" id="" ><i class="fas fa-edit"></i></a>
+              <p><strong>Posted on <%= blog_info[i].post_date %></strong></p>
 
-                          <!-- Icon with info about the quantity of comments -->
-                          <i class="fas fa-thumbs-up" style="color:blue;"></i>
-                      </div>
-                </div>
-            </div> 
+              <p><%= blog_info[i].post_description %></p>
+
+              <div class="d-flex align-items-center">
+                <!-- Button trigger the delete post -->
+                <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete post" type="button"
+                  name="btnDelete" id="<%= blog_info[i].post_id %>" onclick="deletePost(this)"><i
+                    class="fas fa-trash text-secondary"></i></a>
+
+                <!-- Button trigger the edit post -->
+                <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Edit post" type="button"
+                  name="btnEdit" id="<%= blog_info[i].post_id %>" onclick="editPost(this)"><i
+                    class="fas fa-edit"></i></a>
+
+              </div>
+            </div>
+          </div>
+          <%}%>
+            <%- include('../partials/deletePost-modal'); %>
         </div>
+
         <!-- Comment section -->
         <div class="row">
           <div class="col">
-          <div class="card">
-            <div class="card-header bg-primary text-light">
-              Comments
+            <div class="card">
+              <div class="card-header bg-primary text-light">
+                Comments
+              </div>
+              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+                <p class="card-title">User</p>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              </div>
+              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+                <p class="card-title">User</p>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              </div>
+              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+                <p class="card-title">User</p>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              </div>
+
             </div>
-            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-              <p class="card-title">User</p>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-              <p class="card-title">User</p>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
-              <p class="card-title">User</p>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-           
           </div>
-        </div>
         </div>
       </div>
     </div>
-  <!-- Button trigger Create a post -->
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_post">Create a post</button>
-  <%- include('../partials/post-modal'); %>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 <footer>
   <%- include('../partials/footer'); %>
