@@ -93,6 +93,18 @@ function projectEditinDB(project_id, project_name, project_description, callback
     });
 }
 
+// Get specific Post info from DB
+function getSpecificPostInfo(post_id, callback){
+    var sql = "SELECT * FROM posts WHERE post_id = '"+ post_id +"'";
+    pool.query(sql,function(err, result){
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
 
 module.exports = {
     regProjectinDB:regProjectinDB,
@@ -100,6 +112,7 @@ module.exports = {
     getProjectsinfo:getProjectsinfo,
     deletePorjectinDB:deletePorjectinDB,
     getSpecificProjectInfo:getSpecificProjectInfo,
-    projectEditinDB:projectEditinDB
+    projectEditinDB:projectEditinDB,
+    getSpecificPostInfo:getSpecificPostInfo
     
 }; 

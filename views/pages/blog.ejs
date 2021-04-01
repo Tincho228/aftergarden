@@ -66,6 +66,7 @@
           </div>
           <%}%>
             <%- include('../partials/deletePost-modal'); %>
+            <%- include('../partials/editPost-modal'); %>
         </div>
 
         <!-- Comment section -->
@@ -73,7 +74,7 @@
           <div class="col">
             <div class="card">
               <div class="card-header bg-primary text-light">
-                Comments
+                 <%= comment_count %> Comments
               </div>
               <% for(var i=0; i < comment_info.length; i++){ %>
               <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">

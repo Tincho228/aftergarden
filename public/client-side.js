@@ -251,6 +251,20 @@ $(document).ready(function(){
           console.log(data);
       });
     }
+      // Edit a Post
+      function editPost(comp){
+        let post_id = comp.id;
+        console.log(post_id);
+        params = {post_id:post_id};
+        $.get('/postInfo',params, function(data){
+        let post_description = data[0].post_description;
+        $('#post-description').html(post_description);
+        $('#editPost-modal').modal('show');
+      })
+  
+    }
+
+
 // Delete Post
 function deletePost(comp){
   let post_id = comp.id;

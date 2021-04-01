@@ -54,7 +54,7 @@ app.get('/blogView',BlogsController.blogView);
 app.post('/postDelete', BlogsController.postDelete);
 
 
-
+app.get('/postInfo', ProjectsController.postInfo);
 app.post('/regPost', ProjectsController.regPost);
 
 

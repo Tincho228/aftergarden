@@ -1,6 +1,8 @@
 const { json } = require('express');
 const ProjectsModel = require('../models/projectsModel.js');
 
+
+
 // Display Portal View
 function portalView(req, res){
     var sess=req.session;
@@ -28,10 +30,11 @@ function projectsView(req,res){
         }
         let info = result.rows;
         data = {
-            params:params,
-            info:info
-          };  
-    res.render('pages/projects',data);   
+            info:info,
+            params:params
+        }
+        res.render('pages/projects',data);   
+        
     });
 }
 
@@ -86,6 +89,22 @@ function regPost (req, res){
 
     });
 }
+// Get Post info
+function postInfo(req,res){
+    let post_id = req.query.post_id;
+    console.log("the post_id is :"+post_id);
+    ProjectsModel.getSpecificPostInfo(post_id, function(err,result){
+        if(err){
+            console.log("There is an err from the Projects model");
+        }
+        res.json(result.rows);
+    });
+    
+
+}
+
+
+
 // Delete a project
 function deleteProject(req, res){
 
@@ -135,5 +154,6 @@ module.exports = {
     accountView:accountView,
     deleteProject:deleteProject,
     projectInfo:projectInfo,
-    projectEdit:projectEdit
+    projectEdit:projectEdit,
+    postInfo:postInfo
 }; 

@@ -25,14 +25,16 @@ function blogView(req,res){
                 if(err){
                     console.log("There is an err from the Blogs model")
                 }
+                let comment_count = result.rowCount;
                 let comment_info = result.rows;
                 data = {
                     params:params,
                     blog_info:blog_info,
                     info:info,
-                    comment_info:comment_info
+                    comment_info:comment_info,
+                    comment_count:comment_count
                 }
-                console.log(comment_info);
+                
                 res.render('pages/blog',data);
             });
         });
