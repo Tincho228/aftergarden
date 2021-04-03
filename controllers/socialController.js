@@ -3,7 +3,7 @@
 const { json } = require('express');
 const session = require('express-session');
 const ProjectsModel = require('../models/projectsModel.js');
-const SocialModel = require('../models/SocialModel.js');
+const SocialModel = require('../models/socialModel.js');
 
 
 
