@@ -106,18 +106,18 @@ function editPost(req,res){
     let sampleFile;
     let post_id = req.body.post_id;
     let post_description = req.body.post_description;
-    let post_image_path = req.body.post_image_path;
-    if(!(post_image_path)){
+    let project_id = req.body.project_id;
+    
+    if (!req.files || Object.keys(req.files).length === 0) {
         ProjectsModel.editPostDescriptioninDB(post_id, post_description, function(err,result){
             if(err){
                 console.log("There is an err in the Projects Model");
             }
             console.log("text changed");
+            let ref = "/blogView?project_id="+project_id;
+            return res.redirect(ref);
         });
-    }
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-      }
+      }else{
       // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
       sampleFile = req.files.sampleFile;
       // Look for a session
@@ -137,9 +137,17 @@ function editPost(req,res){
                 if(err){
                 console.log("There is an err in the Projects model")
                 }
-                console.log("both items changed");
+                ProjectsModel.editPostDescriptioninDB(post_id, post_description, function(err,result){
+                    if(err){
+                        console.log("There is an err in the Projects Model");
+                    }
+                    console.log("text changed");
+                    let ref = "/blogView?project_id="+project_id;
+                    return res.redirect(ref);
+                });
             });
         });
+      }
 
 }
 

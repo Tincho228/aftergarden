@@ -20,8 +20,18 @@ function makeComment(req,res){
     });
     
 }
-
+// Delete a comment
+function deleteComment(req,res){
+    let comment_id = req.body.comment_id;
+    CommentsModel.deleteCommentinDB(comment_id, function(err,result){
+        if(err){
+            console.log("An err from Database ocurred");
+        }
+        res.json("success");
+    });
+}
 
 module.exports = {
-    makeComment:makeComment
+    makeComment:makeComment,
+    deleteComment:deleteComment
 }

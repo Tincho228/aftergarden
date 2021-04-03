@@ -8,6 +8,7 @@ const AccountsController = require('./controllers/accountsController.js');
 const ProjectsController = require('./controllers/projectsController.js');
 const BlogsController = require('./controllers/blogsController.js');
 const CommentsController = require('./controllers/commentsController.js');
+const SocialController = require('./controllers/socialController.js');
 
 const path = require('path');
 var express = require("express");
@@ -60,6 +61,24 @@ app.post('/regPost', ProjectsController.regPost);
 
 
 app.post('/makeComment', CommentsController.makeComment);
+app.post('/deleteComment', CommentsController.deleteComment);
+
+app.get('/social', SocialController.socialView);
+
+
+/******************************************
+********* DESTROY DE SESSION **************
+*******************************************/
+
+app.get('/logout',(req,res) => {
+  req.session.destroy((err) => {
+      if(err) {
+          return console.log(err);
+      }
+      res.redirect('/');
+  });
+
+});
 
 app.listen(app.get("port"), function(){
     console.log("Now listening for connection on port: ", app.get("port"));

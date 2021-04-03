@@ -19,8 +19,8 @@
           <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
           <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
           <a href="/projects" class="list-group-item list-group-item-action active">My projects</a>
-          <a href="" class="list-group-item list-group-item-action">Social projects</a>
-          <a href="#" class="list-group-item list-group-item-action">Log out</a>
+          <a href="/social" class="list-group-item list-group-item-action">Social projects</a>
+          <a href="/logout " class="list-group-item list-group-item-action">Log out</a>
         </div>
       </div>
       <!-- Project Colummn -->
@@ -35,7 +35,9 @@
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create_post">Create a
           post</button>
         <%- include('../partials/post-modal'); %>
-
+        <% if(!blog_info.length){ %>  
+        <h3 style="margin:40px 0px;">You have no posts yet <i class="fas fa-sad-tear    "></i></h3> 
+        <% } %>    
         <hr style="margin-bottom:30px;">
         <!--  Post card  -->
 
@@ -60,7 +62,8 @@
                 <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Edit post" type="button"
                   name="btnEdit" id="<%= blog_info[i].post_id %>" onclick="editPost(this)"><i
                     class="fas fa-edit"></i></a>
-
+                <!-- Hidden inputs with extra values -->
+                <input type="hidden" id="project_id" value="<%= info[0].project_id %>">
               </div>
             </div>
           </div>
@@ -76,10 +79,18 @@
               <div class="card-header bg-primary text-light">
                  <%= comment_count %> Comments
               </div>
-              <% for(var i=0; i < comment_info.length; i++){ %>
+              <% for(var i=0; i < comment_info.length; i++){%>
               <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
                 <p class="card-title"><%= comment_info[i].client_username%> posted on <%= comment_info[i].comment_date %></p>
                 <p class="card-text"><%= comment_info[i].comment_body %></p>
+
+                <% if(comment_info[i].client_username === params[0].client_username){ %>
+                  <!-- Button that trigger the erase comment modal --> 
+                  <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete comment" type="button"
+                  name="btnDelete" id="<%= comment_info[i].comment_id %>" onclick="deleteComment(this)"><i
+                  class="fas fa-trash text-secondary"></i></a>
+                <%}%> 
+                
               </div>
               <% } %>
               <p id="err_message_comment" class="text-danger" style="margin-left:5px;" ></p>
@@ -90,7 +101,9 @@
               </div>
             </div>
           </div>
+          <%- include('../partials/deleteComment-modal'); %>
         </div>
+        
       </div>
     </div>
 

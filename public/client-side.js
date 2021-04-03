@@ -252,10 +252,12 @@ $(document).ready(function(){
       });
     }
 
-    // Seeks information about the post for the modal
+// Seeks information about the post for the modal
     function editPost(comp){
         let post_id = comp.id;
+        let project_id = $('#project_id').val();
         console.log(post_id);
+        console.log(project_id);
         params = {post_id:post_id};
         $.get('/postInfo',params, function(data){
         let post_description = data[0].post_description;
@@ -263,6 +265,7 @@ $(document).ready(function(){
         $('#post_image_path').attr("src",post_image_path);
         $('#post-description').html(post_description);
         $('#post_id').attr("value",post_id);
+        $('#project_id_modal').attr("value",project_id);
         $('#editPost-modal').modal('show');
         return;
       })
@@ -308,6 +311,28 @@ function makeComment(comp){
     return;
     }
 
+  });
+
+}
+
+// Delete comment
+function deleteComment(comp){
+  let comment_id = comp.id;
+  console.log(comment_id);
+  $('#deleteComment-modal').modal('show');
+  $('#confirm-delete-comment').click(function(){
+    params = {
+      comment_id:comment_id
+    }
+    $.post('/deleteComment',params, function(data){
+      
+      if(data === "success"){
+        console.log(data);
+        location.reload();
+      return;
+      }
+  
+    });
   });
 
 }

@@ -21,7 +21,21 @@ function makeCommentinDB(comment_body,project_id,client_id, callback){
     });
 }
 function getSpecificComments(project_id, callback){
-    var sql = "SELECT client_username, comment_body, comment_date FROM public.clients JOIN public.comments ON clients.client_id = comments.client_id WHERE project_id = '"+ project_id +"'";
+    var sql = "SELECT client_username,comment_id, comment_body, comment_date FROM public.clients JOIN public.comments ON clients.client_id = comments.client_id WHERE project_id = '"+ project_id +"'";
+    pool.query(sql,function(err, result){
+        console.log("querying DB");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
+
+// Delete a comment from Database 
+function deleteCommentinDB(comment_id, callback){
+    var sql = "DELETE FROM public.comments WHERE comment_id = '"+ comment_id +"'";
     pool.query(sql,function(err, result){
         console.log("querying DB");
         if(err){
@@ -35,5 +49,7 @@ function getSpecificComments(project_id, callback){
 
 module.exports = {
     makeCommentinDB:makeCommentinDB,
-    getSpecificComments:getSpecificComments
+    getSpecificComments:getSpecificComments,
+    deleteCommentinDB:deleteCommentinDB
+    
 }

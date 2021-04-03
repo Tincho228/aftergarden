@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row bg-dark">
+      <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <img src="images/profile.jpg" alt="profile picture" class="profile_image">
+        <h3 class="text-center"><%= params[0].client_username %></h3>
+        <div class="list-group">
+          <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
+          <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
+          <a href="/projects" class="list-group-item list-group-item-action">My projects</a>
+          <a href="/social" class="list-group-item list-group-item-action active">Social projects</a>
+          <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
+        </div>
+      </div>
+      <div class="col-8 ">
+        <div class="container-fluid bg-light portal-bg">
+          <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
+          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+        </div>
+        <!-- Projects Gallery -->
+        <h2 style="margin:30px 0px;">Currently working</h2>
+        <hr>
+        <div class="row">
+          <div class="card" style="width: 14rem; margin:10px;">
+            <img class="card-img-top" src="images/profile.jpg" alt="Card image cap">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="font-size: 24px;">
+                  <stromg>Username</stromg>
+                </li>
+                <li class="list-group-item"><i class="fa fa-leaf text-success" aria-hidden="true"></i> 3 Projects</li>
+                <li class="list-group-item"><i class="fa fa-thumbs-up text-primary" aria-hidden="true"></i> 108 Comments</li>
+                <a type="button" class="btn btn-secondary text-light">View projects</a>
+              </ul>
+            </div>
+          </div>
+          <div class="card" style="width: 14rem; margin:10px;">
+            <img class="card-img-top" src="images/profile.jpg" alt="Card image cap">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="font-size: 24px;">
+                  <stromg>Username</stromg>
+                </li>
+                <li class="list-group-item">3 Projects</li>
+                <li class="list-group-item">108 Comments</li>
+                <a type="button" class="btn btn-secondary text-light">View projects</a>
+              </ul>
+            </div>
+          </div>
+          <div class="card" style="width: 14rem; margin:10px;">
+            <img class="card-img-top" src="images/profile.jpg" alt="Card image cap">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="font-size: 24px;">
+                  <stromg>Username</stromg>
+                </li>
+                <li class="list-group-item">3 Projects</li>
+                <li class="list-group-item">108 Comments</li>
+                <a type="button" class="btn btn-secondary text-light">View projects</a>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</html>

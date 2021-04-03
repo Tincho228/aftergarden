@@ -18,8 +18,8 @@
           <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
           <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
           <a href="/projects" class="list-group-item list-group-item-action active">My projects</a>
-          <a href="#" class="list-group-item list-group-item-action">Social projects</a>
-          <a href="#" class="list-group-item list-group-item-action">Log out</a>
+          <a href="/social" class="list-group-item list-group-item-action">Social projects</a>
+          <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
         </div>
       </div>
       <!-- Project Colummn -->
@@ -31,9 +31,28 @@
         <h2 style="margin-top:30px;">Projects</h2>
         <hr style="margin-bottom:30px;">
         <div class="row justify-content-between" id="test">
-          <% for (var i=0; i < info.length ; i++){%>
+          <!-- Ask if there is created projects -->
+          <% if(info.length === 0){%>
+          <div class="col-12 ">
+            <h3 style="margin-bottom:30px;"><%= params[0].client_username %>, you have no projects....</h3>
+            <div class="card" style="width: 15rem;margin-bottom:30px;">
+              <img class="card-img-top" style="width:50%; margin:auto;" src="images/placeholder.png"
+                alt="Card image cap>">
+              <div class="card-body">
+                <h5 class="card-title">No Title</h5>
+                <p class="card-text">No description</p>
+                <!-- Button trigger Create a project -->
+                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#create_project">Add a project</a>
+                <%- include('../partials/project-modal'); %>
+              </div>
+            </div>
+          </div>
+          <% }else{%>
+
+          <%  for (var i=0; i < info.length ; i++){%>
           <div class="card" style="width: 15rem;margin-bottom:30px;">
-            <img class="card-img-top" style="width:50%; margin:auto;" src="images/project_logo.png" alt="Card image cap of <%= info[i].project_name%>">
+            <img class="card-img-top" style="width:50%; margin:auto;" src="images/project_logo.png"
+              alt="Card image cap of <%= info[i].project_name%>">
             <div class="card-body">
               <h5 class="card-title"><%= info[i].project_name%></h5>
               <p class="card-text"><%= info[i].project_description%></p>
@@ -41,9 +60,9 @@
               <p>Created on <%= stardate %></p>
               <div class="d-flex">
                 <form action="/blogView" method="GET">
-                 <input type="hidden" name="project_id" value="<%= info[i].project_id %>"> 
-                <button  type="submit" title="Visit blog" class="btn btn-dark text-light">Visit blog</button>
-              </form>
+                  <input type="hidden" name="project_id" value="<%= info[i].project_id %>">
+                  <button type="submit" title="Visit blog" class="btn btn-dark text-light">Visit blog</button>
+                </form>
                 <div class="d-flex align-items-center">
                   <!-- Button trigger the delete post -->
                   <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete project"
@@ -53,42 +72,41 @@
                   <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Edit project"
                     type="button" name="btnEdit" id="<%= info[i].project_id %>" onclick="editProject(this)"><i
                       class="fas fa-edit"></i></a>
-
                 </div>
               </div>
             </div>
           </div>
-          <%}%> 
+          <%}%>
           <div class="card" style="width: 15rem;margin-bottom:30px;">
-                <img class="card-img-top" style="width:50%; margin:auto;" src="images/placeholder.png" alt="Card image cap>">
-                <div class="card-body">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">No description</p>
-                    <!-- Button trigger Create a project -->
-                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#create_project">Add a project</a>
-                    <%- include('../partials/project-modal'); %>
-                </div>
+            <img class="card-img-top" style="width:50%; margin:auto;" src="images/placeholder.png"
+              alt="Card image cap>">
+            <div class="card-body">
+              <h5 class="card-title">No Title</h5>
+              <p class="card-text">No description</p>
+              <!-- Button trigger Create a project -->
+              <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#create_project">Add a project</a>
+              <%- include('../partials/project-modal'); %>
+            </div>
           </div>
-
           <%- include('../partials/deleteProject-modal'); %>
           <%- include('../partials/editProject-modal'); %>
         </div>
       </div>
     </div>
-  <!-- Button trigger Create a post -->
+    <!-- Button trigger Create a post -->
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_post">Create a post</button>
-  <%- include('../partials/post-modal'); %>
+    <% } %>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 <footer>
   <%- include('../partials/footer'); %>
