@@ -12,8 +12,9 @@
     </div>
     <div class="row">
       <!-- Nav column -->
+      
       <div class="col-4">
-        <img src="images/profile.jpg" alt="profile picture" class="profile_image">
+        <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
         <h3 class="text-center"><%= params[0].client_username %></h3>
         <div class="list-group">
           <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>

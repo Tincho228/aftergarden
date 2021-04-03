@@ -32,6 +32,7 @@ app.use(fileUpload());
 app.use(express.urlencoded({extended:true}));
 app.use (express.static("public"));
 app.use (express.static("pictures"));
+app.use (express.static("profile_pictures"));
 app.set('view engine', 'ejs');
 app.set("port", (process.env.PORT || 5000));
 
@@ -41,6 +42,7 @@ app.post('/register',AccountsController.registerUser);
 app.post('/login',AccountsController.login);
 app.post('/changeEmail', AccountsController.changeEMail);
 app.post('/changePassword', AccountsController.changePassword);
+app.post('/profilePicture',AccountsController.profilePicture);
 
 app.get('/myportal', ProjectsController.portalView);
 app.get('/account', ProjectsController.accountView);
@@ -64,7 +66,7 @@ app.post('/makeComment', CommentsController.makeComment);
 app.post('/deleteComment', CommentsController.deleteComment);
 
 app.get('/social', SocialController.socialView);
-
+app.get('/socialProject', SocialController.socialProject);
 
 /******************************************
 ********* DESTROY DE SESSION **************

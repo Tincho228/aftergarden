@@ -141,10 +141,46 @@ function changePassword(req,res){
             res.json("success");
     });
 }
+// Add a profile picture
+
+function profilePicture(req,res) {
+    let sampleFile;   
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    sampleFile = req.files.sampleFile;
+    // Look for a session
+    sess=req.session;
+    client_username = sess.client.rows[0].client_username;
+    let client_id = sess.client.rows[0].client_id;
+    sampleFile = req.files.sampleFile;
+    uploadPath = './profile_pictures/' + client_username +sampleFile.name;
+
+    //Data for Database
+    client_profile_path = client_username + sampleFile.name;
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv(uploadPath, function(err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    //Send image to the Model
+    AccountsModel.regProfilePictureinDB(client_id, client_profile_path,function(err, result){
+        if(err){
+            console.log("There is an err from de Projects model");
+        }
+        sess.client.rows[0].client_profile_path = client_profile_path;
+        let ref = "/account";
+        res.redirect(ref);
+    });
+    });
+}
+
 
 module.exports = {
     registerUser:registerUser,
     login:login,
     changeEMail:changeEMail,
-    changePassword:changePassword
+    changePassword:changePassword,
+    profilePicture:profilePicture
 }; 

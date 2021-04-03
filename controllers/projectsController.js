@@ -18,6 +18,8 @@ function accountView(req,res){
     res.render('pages/account',params);
 }
 
+
+
 // Display Projects view
 function projectsView(req,res){
     var sess=req.session;
@@ -203,5 +205,6 @@ module.exports = {
     projectInfo:projectInfo,
     projectEdit:projectEdit,
     postInfo:postInfo,
-    editPost:editPost
+    editPost:editPost,
+
 }; 

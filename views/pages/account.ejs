@@ -11,15 +11,16 @@
             <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
         </div>
         <div class="row">
-            <div class="col-4">
-                <img src="images/profile.jpg" alt="profile picture" class="profile_image">
+            
+           <div class="col-4">
+                <img src="../<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
                 <h3 class="text-center"><%= params[0].client_username %></h3>
                 <div class="list-group">
                     <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
                     <a href="/account" class="list-group-item list-group-item-action active">Account Settings</a>
                     <a href="/projects" class="list-group-item list-group-item-action">My projects</a>
-                    <a href="#" class="list-group-item list-group-item-action">Social projects</a>
-                    <a href="#" class="list-group-item list-group-item-action">Log out</a>
+                    <a href="/social" class="list-group-item list-group-item-action">Social projects</a>
+                    <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
                 </div>
             </div>
             <div class="col-8 ">
@@ -40,11 +41,12 @@
                     <!-- Triggers change password -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change_password">Change password</button>
                     <%- include('../partials/changePassword-modal'); %>
+                    <!-- Profile picture-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profilePicture">Profile picture</button>
+                    <%- include('../partials/profilePicture-modal'); %>
                 </div>
 
-                <!-- other projects section -->
-
-                <!-- change your behaviour section-->
+                
 
             </div>
         </div>

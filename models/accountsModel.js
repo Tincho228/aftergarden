@@ -39,7 +39,7 @@ function checkExistingUser(client_username, callback) {
 
 function getClientinfo(client_username, callback){
     console.log("Retrieving client information with user " + client_username);
-    var sql = "SELECT client_id, client_username, client_email, client_password FROM clients WHERE client_username ='"+ client_username +"'";
+    var sql = "SELECT client_id, client_username, client_email, client_password, client_profile_path FROM clients WHERE client_username ='"+ client_username +"'";
     pool.query(sql,function(err, result){
         console.log(" we are querying DB for check email");
         if(err){
@@ -91,6 +91,20 @@ function changePasswordinDB(client_id, client_password, callback){
         callback(null,result);
     });
 }
+// Add a profile picture
+function regProfilePictureinDB(client_id, client_profile_path,callback){
+    var sql = "UPDATE public.clients SET client_profile_path='"+ client_profile_path +"' WHERE client_id = '"+ client_id +"'";
+    pool.query(sql,function(err, result){
+        console.log(" we are querying DB for check email");
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+
+}
 
 module.exports = {
     registerUserinDB:registerUserinDB,
@@ -98,6 +112,6 @@ module.exports = {
     getClientinfo:getClientinfo,
     checkExistingEmail:checkExistingEmail,
     changeEMailinDB:changeEMailinDB,
-    changePasswordinDB:changePasswordinDB
-    
+    changePasswordinDB:changePasswordinDB,
+    regProfilePictureinDB:regProfilePictureinDB
 }; 
