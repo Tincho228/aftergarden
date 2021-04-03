@@ -105,6 +105,32 @@ function getSpecificPostInfo(post_id, callback){
         callback(null,result);
     });
 }
+// Update post description in database
+function editPostDescriptioninDB(post_id, post_description, callback){
+    var sql = "UPDATE public.posts SET post_description='"+ post_description +"' WHERE post_id = '"+ post_id +"'";
+    pool.query(sql,function(err, result){
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
+// Update post (image file and description)
+function editPostinDB(post_id, post_description, post_image_path, callback){
+    var sql = "UPDATE public.posts SET post_description='"+ post_description +"',post_image_path = '"+ post_image_path +"' WHERE post_id = '"+ post_id +"'";
+    pool.query(sql,function(err, result){
+        if(err){
+            console.log("An err with the db ocurred");
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null,result);
+    });
+}
+
+
 
 module.exports = {
     regProjectinDB:regProjectinDB,
@@ -113,6 +139,8 @@ module.exports = {
     deletePorjectinDB:deletePorjectinDB,
     getSpecificProjectInfo:getSpecificProjectInfo,
     projectEditinDB:projectEditinDB,
-    getSpecificPostInfo:getSpecificPostInfo
+    getSpecificPostInfo:getSpecificPostInfo,
+    editPostDescriptioninDB:editPostDescriptioninDB,
+    editPostinDB:editPostinDB
     
 }; 

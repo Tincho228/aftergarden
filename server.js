@@ -52,6 +52,7 @@ app.post('/projectEdit',ProjectsController.projectEdit);
 
 app.get('/blogView',BlogsController.blogView);
 app.post('/postDelete', BlogsController.postDelete);
+app.post('/editPost', ProjectsController.editPost);
 
 
 app.get('/postInfo', ProjectsController.postInfo);

@@ -11,11 +11,11 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col" id="message_step2">
+                <div class="col-sm-12 col-md-6" id="message_step2">
                     <h2>Edit your Post</h2>
                     <p id="err_step1" class="text-danger"></p>
                     <hr>
-                    <form ref='uploadForm' id='uploadForm' method='post' action="/regPost"
+                    <form ref='uploadForm' method='post' action="/editPost"
                         encType="multipart/form-data">
                         <!-- upload an image -->
                         <div class="form-group">
@@ -29,10 +29,18 @@ aria-hidden="true">
                             <textarea class="form-control" id="post-description" name="post_description" aria-describedby="emailHelp" required></textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <input type="hidden" name="project_id" value="<%= info[0].project_id %>">
+                            <input type="hidden" name="post_id" id="post_id" value="">
                             <button type="submit" class="btn btn-success" value="Post!">POST!</button>
                         </div>
                     </form>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="image-container">
+                        <img id ="post_image_path" src="" style="width:100%;" alt="login image">
+                        <div class="login-image-title">
+                            <h2>Start from scratch!</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

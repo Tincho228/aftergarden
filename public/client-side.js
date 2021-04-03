@@ -251,15 +251,20 @@ $(document).ready(function(){
           console.log(data);
       });
     }
-      // Edit a Post
-      function editPost(comp){
+
+    // Seeks information about the post for the modal
+    function editPost(comp){
         let post_id = comp.id;
         console.log(post_id);
         params = {post_id:post_id};
         $.get('/postInfo',params, function(data){
         let post_description = data[0].post_description;
+        let post_image_path = data[0].post_image_path;
+        $('#post_image_path').attr("src",post_image_path);
         $('#post-description').html(post_description);
+        $('#post_id').attr("value",post_id);
         $('#editPost-modal').modal('show');
+        return;
       })
   
     }

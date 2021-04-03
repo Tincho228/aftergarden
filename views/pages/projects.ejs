@@ -37,6 +37,8 @@
             <div class="card-body">
               <h5 class="card-title"><%= info[i].project_name%></h5>
               <p class="card-text"><%= info[i].project_description%></p>
+              <%  let stardate = info[i].project_date.toDateString(); %>
+              <p>Created on <%= stardate %></p>
               <div class="d-flex">
                 <form action="/blogView" method="GET">
                  <input type="hidden" name="project_id" value="<%= info[i].project_id %>"> 

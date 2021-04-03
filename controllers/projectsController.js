@@ -99,10 +99,49 @@ function postInfo(req,res){
         }
         res.json(result.rows);
     });
-    
-
 }
 
+// Edit a Post
+function editPost(req,res){
+    let sampleFile;
+    let post_id = req.body.post_id;
+    let post_description = req.body.post_description;
+    let post_image_path = req.body.post_image_path;
+    if(!(post_image_path)){
+        ProjectsModel.editPostDescriptioninDB(post_id, post_description, function(err,result){
+            if(err){
+                console.log("There is an err in the Projects Model");
+            }
+            console.log("text changed");
+        });
+    }
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+      }
+      // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+      sampleFile = req.files.sampleFile;
+      // Look for a session
+      sess=req.session;
+      client_username = sess.client.rows[0].client_username;
+      sampleFile = req.files.sampleFile;
+      uploadPath = './pictures/' + client_username +sampleFile.name;
+  
+      //Data for Database
+      post_image_path = client_username + sampleFile.name;
+      // Use the mv() method to place the file somewhere on your server
+      sampleFile.mv(uploadPath, function(err) {
+            if (err) {
+            return res.status(500).send(err);
+            }
+            ProjectsModel.editPostinDB(post_id, post_description, post_image_path, function(err,result){
+                if(err){
+                console.log("There is an err in the Projects model")
+                }
+                console.log("both items changed");
+            });
+        });
+
+}
 
 
 // Delete a project
@@ -155,5 +194,6 @@ module.exports = {
     deleteProject:deleteProject,
     projectInfo:projectInfo,
     projectEdit:projectEdit,
-    postInfo:postInfo
+    postInfo:postInfo,
+    editPost:editPost
 }; 
