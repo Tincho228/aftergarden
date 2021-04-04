@@ -67,6 +67,7 @@ app.post('/deleteComment', CommentsController.deleteComment);
 
 app.get('/social', SocialController.socialView);
 app.get('/socialProject', SocialController.socialProject);
+app.get('/socialBlog',SocialController.socialBlog);
 
 /******************************************
 ********* DESTROY DE SESSION **************

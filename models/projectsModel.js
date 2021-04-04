@@ -68,7 +68,8 @@ function deletePorjectinDB(project_id, callback){
 
 // Get info from database about a specific project 
 function getSpecificProjectInfo(project_id, callback){
-    var sql = "SELECT * FROM public.projects WHERE project_id = '"+ project_id +"'";
+    var sql = "SELECT * FROM clients JOIN projects ON clients.client_id = projects.client_id WHERE project_id = '"+ project_id +"'"
+    //var sql = "SELECT * FROM public.projects WHERE project_id = '"+ project_id +"'";
     pool.query(sql,function(err, result){
         console.log("querying DB");
         if(err){

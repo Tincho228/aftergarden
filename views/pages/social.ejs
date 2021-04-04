@@ -14,7 +14,11 @@
        <!-- Nav column -->
        
       <div class="col-4">
-        <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <% if(!(params[0].client_profile_path)){ %>
+          <img src="images/profile_placeholder.png" alt="profile picture" class="profile_image">
+        <%}else{%>
+          <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <%}%>
         <h3 class="text-center"><%= params[0].client_username %></h3>
         <div class="list-group">
           <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
@@ -27,7 +31,7 @@
       <div class="col-8 ">
         <div class="container-fluid bg-light portal-bg">
           <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
-          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+          <h3 class="text-center text-light">Check out all the users making difference..</h3>
         </div>
         <!-- Projects Gallery -->
         <section id ="social_request">
@@ -38,7 +42,12 @@
           <!--  Looping object into cards  -->
           <% for(var i = 0; i < users_info.length; i++) {%>
           <div class="card" style="width: 14rem; margin:10px;">
-            <img class="card-img-top" src="<%= users_info[i].client_profile_path%>" alt="Card image cap">
+            
+            <% if(!(users_info[i].client_profile_path)){%>
+              <img class="card-img-top" src="images/profile_placeholder.png" alt="Card image cap">
+            <%}else{%>
+              <img class="card-img-top" src="<%= users_info[i].client_profile_path%>" alt="Card image cap">
+            <%}%>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item" style="font-size: 24px;">
@@ -46,7 +55,10 @@
                 </li>
                 <li class="list-group-item"><i class="fa fa-leaf text-success" aria-hidden="true"></i>  Projects</li>
                 <li class="list-group-item"><i class="fa fa-thumbs-up text-primary" aria-hidden="true"></i>  Comments</li>
-                <a type="button" class="btn btn-secondary text-light" id="<%= users_info[i].client_id%>" onclick="userinfo(this)">View projects</a>
+                <form method="get" action="/socialProject">
+                <input type="hidden" name="client_id" value="<%= users_info[i].client_id%>">
+                <button type="submit" class="btn btn-secondary text-light">View projects</button>
+              </form>
               </ul>
             </div>
           </div>

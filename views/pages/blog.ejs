@@ -14,7 +14,11 @@
       <!-- Nav column -->
       
       <div class="col-4">
-        <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <% if(!(params[0].client_profile_path)){ %>
+          <img src="images/profile_placeholder.png" alt="profile picture" class="profile_image">
+      <%}else{%>
+          <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+      <%}%>
         <h3 class="text-center"><%= params[0].client_username %></h3>
         <div class="list-group">
           <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
@@ -53,7 +57,7 @@
 
               <p><%= blog_info[i].post_description %></p>
 
-              <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center" style="border:1px solid lightgray; border-radius:5px;">
                 <!-- Button trigger the delete post -->
                 <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete post" type="button"
                   name="btnDelete" id="<%= blog_info[i].post_id %>" onclick="deletePost(this)"><i
@@ -87,7 +91,7 @@
 
                 <% if(comment_info[i].client_username === params[0].client_username){ %>
                   <!-- Button that trigger the erase comment modal --> 
-                  <a style="padding:5px;" data-toggle="tooltip" data-placement="bottom" title="Delete comment" type="button"
+                  <a style="padding:5px; display:block; text-align: center; border-radius: 5px; border:1px solid lightgray" data-toggle="tooltip" data-placement="bottom" title="Delete comment" type="button"
                   name="btnDelete" id="<%= comment_info[i].comment_id %>" onclick="deleteComment(this)"><i
                   class="fas fa-trash text-secondary"></i></a>
                 <%}%> 

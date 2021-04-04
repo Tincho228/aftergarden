@@ -336,32 +336,4 @@ function deleteComment(comp){
   });
 
 }
-// Social - visit user info
-function userinfo(comp){
-  let client_id = comp.id;
-  params = {
-    client_id
-  }
-  $.get('/socialProject',params, function(data){
-    if (data.rows.length === 0){
-      $("#social_request").html("THIS USER HAS NO PROJECTS");
-      return;
-    }else {
-      
-      let social_request ='<h2 style="margin-top:30px;">Projects</h2><hr style="margin-bottom:30px;">';
-      social_request += '<div class="row justify-content-between" id="test">';
-            for (var i=0; i < data.rows.length ; i++){
-              social_request +='<div class="card" style="width: 15rem;margin-bottom:30px;"><img class="card-img-top" style="width:50%; margin:auto;" src="images/project_logo.png" alt="Card image cap of <%= info[i].project_name%>">';
-              social_request +='<div class="card-body">';
-              social_request +='<h5 class="card-title">'+data.rows[i].project_name+'</h5>';
-              social_request +='<p class="card-text">'+data.rows[i].project_description+'</p>';
-              let stardate = data.rows[i].project_date;
-              social_request +='<p>Created on '+stardate+'</p>';
-              social_request +='<div class="d-flex">';
-              social_request +='<a type="submit" title="Visit blog" class="btn btn-dark text-light" id="'+ data.rows[i].project_id +'" onclick="sociaBlog(this)">Visit blog</a></div></div></div>';
-          }
-      $("#social_request").html(social_request);
-      console.log(data);
-    }
-  });
-}
+

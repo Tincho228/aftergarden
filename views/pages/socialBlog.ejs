@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row bg-dark">
+      <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+    </div>
+    <div class="row">
+      <!-- Nav column -->
+      
+      <div class="col-4">
+        <% if(!(params[0].client_profile_path)){ %>
+            <img src="images/profile_placeholder.png" alt="profile picture" class="profile_image">
+        <%}else{%>
+            <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <%}%>
+        <h3 class="text-center"><%= params[0].client_username %></h3>
+        <div class="list-group">
+          <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
+          <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
+          <a href="/projects" class="list-group-item list-group-item-action">My projects</a>
+          <a href="/social" class="list-group-item list-group-item-action active">Social projects>Projects>Blogs</a>
+          <a href="/logout " class="list-group-item list-group-item-action">Log out</a>
+        </div>
+      </div>
+      <!-- Project Colummn -->
+      <div class="col-8 ">
+        <div class="container-fluid bg-light portal-bg">
+          <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
+          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+        </div>
+        <h3 style="margin-top:30px;"><%= info[0].project_name %>- Blog</h3>
+        <% if(!blog_info.length){ %>  
+        <h3 style="margin:40px 0px;">No posts yet <i class="fas fa-sad-tear    "></i></h3> 
+        <% } %>    
+        <hr style="margin-bottom:30px;">
+        <!--  Post card  -->
+
+        <div class="">
+          <% for(var i=0; i < blog_info.length ; i++) {%>
+          <div class="row" style="border:1px solid lightgray;margin:15px 0px; border-radius:15px;padding:15px;">
+            <div class="col-5"><img class="img-thumbnail" style="width:80%;" src="<%= blog_info[i].post_image_path %>" alt="image of post">
+            </div>
+            <div class="col-7">
+              <h4 class="text-secondary">Username: <%= info[0].client_username %></h4>
+              <% var stardate = blog_info[i].post_date.toDateString() %>
+              <p><strong>Posted on <%= stardate %></strong></p>
+
+              <p><%= blog_info[i].post_description %></p>
+            </div>
+          </div>
+          <%}%>
+            <%- include('../partials/deletePost-modal'); %>
+            <%- include('../partials/editPost-modal'); %>
+        </div>
+
+        <!-- Comment section -->
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-header bg-primary text-light">
+                 <%= comment_count %> Comments
+              </div>
+              <% for(var i=0; i < comment_info.length; i++){%>
+              <div class="card-body" style="border:1px solid lightgray; margin:5px; border-radius:15px;">
+                <%  var stardate = comment_info[i].comment_date.toDateString() %>
+                <p class="card-title text-secondary"><%= comment_info[i].client_username%> posted on <%= stardate %></p>
+                <p class="card-text"><%= comment_info[i].comment_body %></p>
+
+                <% if(comment_info[i].client_username === params[0].client_username){ %>
+                  <!-- Button that trigger the erase comment modal --> 
+                  <a style="padding:5px;display:block;border:1px solid lightgray;border-radius:5px;text-align:center;" data-toggle="tooltip" data-placement="bottom" title="Delete comment" type="button"
+                  name="btnDelete" id="<%= comment_info[i].comment_id %>" onclick="deleteComment(this)"><i
+                  class="fas fa-trash text-secondary"></i></a>
+                <%}%> 
+                
+              </div>
+              <% } %>
+              <p id="err_message_comment" class="text-danger" style="margin-left:5px;" ></p>
+              <div class="input-group mb-2 align-items-center" style="background-color: burlywood;">
+                
+                <input style="margin:5px; border-radius:15px" type="text" class="form-control" placeholder="Make a comment" aria-label="Make a comment" aria-describedby="button-addon2" id="comment_body">
+                <a class="btn btn-success text-light" type="button" id="<%= info[0].project_id%>" onclick="makeComment(this)"><i class="fa fa-play" aria-hidden="true"></i> Send</a>
+              </div>
+            </div>
+          </div>
+          <%- include('../partials/deleteComment-modal'); %>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</html>

@@ -13,7 +13,7 @@ create table projects (
     project_description text not null,
     project_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
     client_id int,
-    FOREIGN KEY (client_id) REFERENCES public.clients(client_id)
+    FOREIGN KEY (client_id) REFERENCES public.clients(client_id) 
 );
 
 create table posts (
@@ -22,7 +22,7 @@ create table posts (
     post_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
     post_image_path TEXT not null,
     project_id int,
-    FOREIGN KEY (project_id) REFERENCES public.projects(project_id)
+    FOREIGN KEY (project_id) REFERENCES public.projects(project_id) ON DELETE CASCADE
 );
 
 create table comments (
@@ -32,7 +32,7 @@ create table comments (
     client_id int,
     project_id int,
     FOREIGN KEY (client_id) REFERENCES public.clients(client_id),
-    FOREIGN KEY (project_id) REFERENCES public.projects(project_id)
+    FOREIGN KEY (project_id) REFERENCES public.projects(project_id) ON DELETE CASCADE
 );
 
 create user aftergardenuser with password 'aftergarden';

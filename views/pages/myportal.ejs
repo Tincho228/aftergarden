@@ -14,7 +14,11 @@
       <!-- Nav column -->
      
       <div class="col-4">
-        <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <% if(!(params[0].client_profile_path)){ %>
+            <img src="images/profile_placeholder.png" alt="profile picture" class="profile_image">
+        <%}else{%>
+            <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <%}%>
         <h3 class="text-center"><%= params[0].client_username %></h3>
         <div class="list-group">
           <a href="/myportal" class="list-group-item list-group-item-action active">My portal</a>
@@ -27,7 +31,7 @@
       <div class="col-8 ">
         <div class="container-fluid bg-light portal-bg">
           <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
-          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+          <h3 class="text-center text-light">Administer and create your projects!!!</h3>
         </div>
         <!-- about us section -->
         <div class="row justify-content-center" style="margin:30px 0px;">

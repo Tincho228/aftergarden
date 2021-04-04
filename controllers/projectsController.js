@@ -15,7 +15,7 @@ function portalView(req, res){
 function accountView(req,res){
     var sess=req.session;
     params = sess.client.rows;
-    res.render('pages/account',params);
+    return res.render('pages/account',params);
 }
 
 

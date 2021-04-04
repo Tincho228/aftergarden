@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row bg-dark">
+      <img src="images/logo.png" style="width:150px;" alt="aftergarden logo">
+    </div>
+    <div class="row">
+       <!-- Nav column -->
+       
+      <div class="col-4">
+        <% if(!(params[0].client_profile_path)){ %>
+            <img src="images/profile_placeholder.png" alt="profile picture" class="profile_image">
+        <%}else{%>
+            <img src="<%= params[0].client_profile_path %>" alt="profile picture" class="profile_image">
+        <%}%>
+        <h3 class="text-center"><%= params[0].client_username %></h3>
+        <div class="list-group">
+          <a href="/myportal" class="list-group-item list-group-item-action">My portal</a>
+          <a href="/account" class="list-group-item list-group-item-action">Account Settings</a>
+          <a href="/projects" class="list-group-item list-group-item-action">My projects</a>
+          <a href="/social" class="list-group-item list-group-item-action active">Social projects</a>
+          <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
+        </div>
+      </div>
+      <!-- Project Colummn -->
+      <div class="col-8 ">
+        <div class="container-fluid bg-light portal-bg">
+          <h1 class="text-center portal-title text-light">Welcome to your Portal</h1>
+          <h3 class="text-center text-light">Administer and create your projects as well as see other projects</h3>
+        </div>
+        <h2 style="margin-top:30px;">Projects</h2>
+        <hr style="margin-bottom:30px;">
+        <div class="row justify-content-between" id="test">
+          <!-- Ask if there is created projects -->
+          <% if(info.length === 0){%>
+          <div class="col-12 ">
+            <h3 style="margin-bottom:30px;"><%= params[0].client_username %>, you have no projects....</h3>
+          </div>
+          <% }else{%>
+
+          <%  for (var i=0; i < info.length ; i++){%>
+          <div class="card" style="width: 15rem;margin-bottom:30px;">
+            <img class="card-img-top" style="width:50%; margin:auto;" src="images/project_logo.png"
+              alt="Card image cap of <%= info[i].project_name%>">
+            <div class="card-body">
+              <h5 class="card-title"><%= info[i].project_name%></h5>
+              <p class="card-text"><%= info[i].project_description%></p>
+              <%  let stardate = info[i].project_date.toDateString(); %>
+              <p>Created on <%= stardate %></p>
+              <div class="d-flex">
+                <form action="/socialBlog" method="GET">
+                  <input type="hidden" name="project_id" value="<%= info[i].project_id %>">
+                  <button type="submit" title="Visit blog" class="btn btn-dark text-light">Visit blog</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger Create a post -->
+
+    <% } %>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</html>
